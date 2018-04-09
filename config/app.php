@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'CodeFlix'),
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,6 +167,13 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Bootstrapper\BootstrapperL5ServiceProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
+        Folklore\Image\ImageServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Dingo\Api\Provider\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -176,7 +183,7 @@ return [
         // CodeFlix\Providers\BroadcastServiceProvider::class,
         CodeFlix\Providers\EventServiceProvider::class,
         CodeFlix\Providers\RouteServiceProvider::class,
-
+        CodeFlix\Providers\RepositoryServiceProvider::class,
     ],
 
     /*
@@ -225,7 +232,16 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Table' => Bootstrapper\Facades\Table::class,
+        'Icon' => Bootstrapper\Facades\Icon::class,
+        'Alert' => Bootstrapper\Facades\Alert::class,
+        'Button' => Bootstrapper\Facades\Button::class,
+        'Navbar' => Bootstrapper\Facades\Navbar::class,
+        'Navigation' => Bootstrapper\Facades\Navigation::class,
+        'MediaObject' => \Bootstrapper\Facades\MediaObject::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+        'Image' => \Folklore\Image\Facades\Image::class,
+        'ApiRoute' => \Dingo\Api\Facade\Route::class,
     ],
-
 ];

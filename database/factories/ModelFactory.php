@@ -22,11 +22,39 @@ $factory->define(\CodeFlix\Models\User::class, function (Faker\Generator $faker)
         'remember_token' => str_random(10),
     ];
 });
-
+//Factory de users
 $factory->state(\CodeFlix\Models\User::class, 'admin', function (Faker\Generator $faker) {
     static $password;
 
     return [
         'role' => \CodeFlix\Models\User::ROLE_ADMIN,
+    ];
+});
+//Factory de Categorias
+$factory->define(\CodeFlix\Models\Category::class, function (Faker\Generator $faker) {
+    return [
+        'category' => $faker->unique()->word
+    ];
+});
+
+//Factory de Categorias
+$factory->define(\CodeFlix\Models\Serie::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(10),
+        'thumb' => 'thumb.jpg',
+    ];
+});
+
+//Factory de Videos
+$factory->define(\CodeFlix\Models\Video::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(10),
+        'duration' => rand(1,30),
+        'file' => 'file.jpg',
+        'thumb' => 'thumb.jpg',
+        'published' => rand(0,1),
+        'completed' => 0
     ];
 });
