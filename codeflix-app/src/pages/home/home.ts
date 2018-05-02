@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { Test } from "../../components/test/test";
+import { IonicPage, NavController } from 'ionic-angular';
 
+/**
+ * Generated class for the HomePage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+@IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController) {
 
-  }
-
-  goToTest(){
-    this.navCtrl.push(Test, {
-      'id': 10,
-        'name': 'Anderson'
-    });
-  }
-
+    }
 }
