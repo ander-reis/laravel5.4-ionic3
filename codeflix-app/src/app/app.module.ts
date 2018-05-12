@@ -10,9 +10,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Test } from '../components/test/test';
 import {LoginPage} from "../pages/login/login";
-import {HttpModule} from "@angular/http";
+import {Http, HttpModule} from "@angular/http";
 import { JwtClientProvider } from '../providers/jwt-client/jwt-client';
-import {IonicStorageModule} from "@ionic/storage";
+import {IonicStorageModule, Storage} from "@ionic/storage";
+import {AuthConfig, AuthHttp, JwtHelper} from "angular2-jwt";
+import { AuthProvider } from '../providers/auth/auth';
+import {Env} from "../models/env";
+
+declare var ENV:Env;
 
 @NgModule({
     declarations: [
@@ -41,8 +46,23 @@ import {IonicStorageModule} from "@ionic/storage";
     providers: [
         StatusBar,
         SplashScreen,
+        JwtClientProvider,
+        JwtHelper,
+        AuthProvider,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        JwtClientProvider
+        {
+            provide: AuthHttp,
+            deps: [Http, Storage],
+            useFactory(http, storage){
+                let authConfig = new AuthConfig({
+                    headerPrefix: 'Bearer',
+                    noJwtError: true,
+                    noClientCheck: true,
+                    tokenGetter: (() => storage.get(ENV.TOKEN_NAME))
+                });
+                return new AuthHttp(authConfig, http);
+            }
+        }
     ]
 })
 export class AppModule {}

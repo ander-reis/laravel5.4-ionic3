@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import {Auth} from "../../decorators/auth.decorator";
 
 /**
  * Generated class for the HomePage page.
@@ -7,6 +8,8 @@ import { IonicPage, NavController } from 'ionic-angular';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
+@Auth()
 @IonicPage()
 @Component({
   selector: 'page-home',

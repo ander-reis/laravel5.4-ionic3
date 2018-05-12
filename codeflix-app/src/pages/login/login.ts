@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, MenuController, NavController, NavParams, ToastController} from 'ionic-angular';
 import 'rxjs/add/operator/toPromise';
-import {JwtClientProvider} from "../../providers/jwt-client/jwt-client";
+import {AuthProvider} from "../../providers/auth/auth";
+import {HomePage} from "../home/home";
+import {appContainer} from "../../app/app.container";
 
 /**
  * Generated class for the LoginPage page.
@@ -16,10 +18,18 @@ import {JwtClientProvider} from "../../providers/jwt-client/jwt-client";
 })
 export class LoginPage {
 
-    email: string;
-    password: string;
+    user = {
+        email: 'admin@user.com',
+        password: 'secret'
+    };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private jwtClient: JwtClientProvider) {
+    constructor(public navCtrl: NavController,
+                public menuCtrl: MenuController,
+                public toastCtrl: ToastController,
+                public navParams: NavParams,
+                private auth: AuthProvider) {
+        console.log(appContainer.get(AuthProvider));
+        this.menuCtrl.enable(false);
     }
 
     ionViewDidLoad() {
@@ -27,9 +37,26 @@ export class LoginPage {
     }
 
     login() {
-        this.jwtClient.accessToken({email: this.email, password: this.password})
-            .then((token) => {
-                console.log(token);
+        this.auth.login(this.user).then(() => {
+            this.afterLogin();
+        }).catch(() => {
+            let toast = this.toastCtrl.create({
+                message: 'Email e/ou senha inválidos.',
+                duration: 3000,
+                position: 'top',
+                cssClass: 'toast-login-error'
             });
+
+            toast.present();
+        });
+    }
+
+    irParaHome(){
+        this.navCtrl.push(HomePage);
+    }
+
+    afterLogin() {
+        this.menuCtrl.enable(true);
+        this.navCtrl.push(HomePage);
     }
 }
