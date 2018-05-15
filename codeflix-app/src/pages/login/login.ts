@@ -3,7 +3,7 @@ import {IonicPage, MenuController, NavController, NavParams, ToastController} fr
 import 'rxjs/add/operator/toPromise';
 import {AuthProvider} from "../../providers/auth/auth";
 import {HomePage} from "../home/home";
-import {appContainer} from "../../app/app.container";
+import {Test} from "../../components/test/test";
 
 /**
  * Generated class for the LoginPage page.
@@ -28,7 +28,6 @@ export class LoginPage {
                 public toastCtrl: ToastController,
                 public navParams: NavParams,
                 private auth: AuthProvider) {
-        console.log(appContainer.get(AuthProvider));
         this.menuCtrl.enable(false);
     }
 
@@ -52,7 +51,7 @@ export class LoginPage {
     }
 
     irParaHome(){
-        this.navCtrl.push(HomePage);
+        this.navCtrl.push(Test, {id: 10, name: 'anderson'});
     }
 
     afterLogin() {

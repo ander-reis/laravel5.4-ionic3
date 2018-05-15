@@ -30,7 +30,13 @@ declare var ENV:Env;
     imports: [
         HttpModule,
         BrowserModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp , {}, {
+            links: [
+                {component: LoginPage, name: 'LoginPage', segment: 'login'},
+                {component: HomePage, name: 'HomePage', segment: 'home'},
+                {component: Test, name: 'TestPage', segment: 'test/:id/:name'},
+            ]
+        }),
         IonicStorageModule.forRoot({
             driverOrder: ['localstorage']
         })

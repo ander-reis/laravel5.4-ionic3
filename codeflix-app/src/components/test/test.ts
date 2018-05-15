@@ -17,7 +17,7 @@ export class Test {
 
   constructor(public navParams: NavParams) {
     console.log('Hello Test Component');
-    this.text = `${this.navParams.get('id')} - ${this.navParams.get('name')}`;
+    this.text = `${this.navParams.get('id')} ${this.navParams.get('name')}`;
   }
 
   mostrarAlert(){
