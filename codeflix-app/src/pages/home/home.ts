@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import {Auth} from "../../decorators/auth.decorator";
+import {Test} from "../../components/test/test";
 
 /**
  * Generated class for the HomePage page.
@@ -19,5 +20,12 @@ export class HomePage {
 
     constructor(public navCtrl: NavController) {
 
+    }
+
+    goToTest(){
+        this.navCtrl.push(Test, {
+            'id': 10,
+            'name': 'Anderson'
+        })
     }
 }

@@ -60,6 +60,7 @@ export class MyApp {
   logout(){
       this.auth.logout().then(() => {
          alert('logout com sucesso');
+          this.nav.setRoot(LoginPage);
       });
   }
 }
