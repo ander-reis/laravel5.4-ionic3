@@ -3,7 +3,7 @@ import {IonicPage, MenuController, NavController, NavParams, ToastController} fr
 import 'rxjs/add/operator/toPromise';
 import {AuthProvider} from "../../providers/auth/auth";
 import {HomePage} from "../home/home";
-import {Test} from "../../components/test/test";
+// import {Test} from "../../components/test/test";
 
 /**
  * Generated class for the LoginPage page.
@@ -50,8 +50,20 @@ export class LoginPage {
         });
     }
 
-    irParaHome(){
-        this.navCtrl.push(Test, {id: 10, name: 'anderson'});
+    loginFacebook(){
+        this.auth.loginFacebook()
+            .then(() => {
+                this.afterLogin();
+            }).catch(() => {
+            let toast = this.toastCtrl.create({
+                message: 'Erro ao realizar login no facebook.',
+                duration: 3000,
+                position: 'top',
+                cssClass: 'toast-login-error'
+            });
+
+            toast.present();
+        });
     }
 
     afterLogin() {

@@ -7,6 +7,7 @@ use Dingo\Api\Exception\Handler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Dusk\DuskServiceProvider;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -60,6 +61,9 @@ class AppServiceProvider extends ServiceProvider
         $handler = app(Handler::class);
         $handler->register(function(AuthenticationException $exception){
             return response()->json(['error' => 'Unauthenticated', 'status_code:' => 401], 401);
+        });
+        $handler->register(function(JWTException $exception){
+            return response()->json(['error' => $exception->getMessage(), 'status_code:' => 401], 401);
         });
     }
 }

@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {AuthProvider} from "../providers/auth/auth";
+import {RedirectorProvider} from "../providers/redirector/redirector";
 
 // import { Test } from '../components/test/test';
 
@@ -26,7 +27,8 @@ export class MyApp {
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public  auth: AuthProvider) {
+              public  auth: AuthProvider,
+              public riderector: RedirectorProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -49,6 +51,11 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  ngAfterViewInit(){
+      //metodo redirecionamento login caso erro token
+      this.riderector.config(this.nav);
   }
 
   openPage(page) {

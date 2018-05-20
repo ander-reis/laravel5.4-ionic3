@@ -55,6 +55,13 @@ export class JwtClientProvider {
         });
     }
 
+    //metodo para salvar token
+    setToken(token:string):string{
+        this._token = token;
+        this.storage.set(ENV.TOKEN_NAME, this._token);
+        return this._token;
+    }
+
     //metodo para armazenar token no storage
     accessToken(jwtCredentials: JwtCredentials):Promise<string> {
         return this.authHttp.post(`${ENV.API_URL}/access_token`, jwtCredentials)

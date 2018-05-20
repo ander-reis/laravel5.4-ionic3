@@ -29,6 +29,12 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => '2111833485739951',
+        'client_secret' => '6cb95b8c0444fd62a739ce4ee8d8b52b',
+        'redirect' => 'http://localhost:8000/awesome'
+    ],
+
     'stripe' => [
         'model' => \CodeFlix\Models\User::class,
         'key' => env('STRIPE_KEY'),

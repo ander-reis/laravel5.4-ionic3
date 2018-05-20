@@ -29,8 +29,21 @@ https://github.com/tymondesigns/jwt-auth
 cors
 https://github.com/barryvdh/laravel-cors
 
+laravel socialite
+https://laravel.com/docs/5.4/socialite
+
 /***** ionic *****/
 incluir token no header
 https://github.com/auth0/angular2-jwt
 obs:biblioteca mudou, instalar:
 npm install angular2-jwt@0.2.3 --save
+
+facebook login
+https://ionicframework.com/docs/native/facebook/
+
+plataforma browser comando
+ionic cordova platform add browser
+
+github
+https://github.com/lksalencar/CodeFlix
+https://github.com/lksalencar/codeflix-app

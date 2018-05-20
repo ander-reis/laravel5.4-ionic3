@@ -41,6 +41,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
             'expires' => 1
         ])->name('.refresh_token');
 
+        //rota para registrar user facebook
+        ApiRoute::post('/register', 'RegisterUsersController@store');
+
         ApiRoute::group([
             'middleware' => ['api.throttle', 'api.auth'],
             'limit' => 100,

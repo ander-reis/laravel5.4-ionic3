@@ -18,14 +18,13 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         /**
          * cria user
          */
-        $attributes['role'] = User::ROLE_ADMIN;
         $attributes['password'] = User::generatePassword();
         $model =  parent::create($attributes);
         /**
          * envia email para verificar conta do usuário
          */
-        UserVerification::generate($model);
-        UserVerification::send($model, 'Sua conta foi criada');
+        //UserVerification::generate($model);
+        //UserVerification::send($model, 'Sua conta foi criada');
         return $model;
     }
 

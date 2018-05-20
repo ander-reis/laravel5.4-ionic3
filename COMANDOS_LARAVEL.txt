@@ -53,6 +53,5 @@ php artisan make:controller nome_controller --resource --model=CodeFlix\Models\S
 comando para criar form com fields:
 php artisan make:form Forms/SerieForm --fields="title:text, description:textarea"
 
-
-github projeto
-https://github.com/rsacht/codeflix
+comando para rodar ionic no platform browser
+ionic cordova run browser

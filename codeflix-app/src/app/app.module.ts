@@ -1,23 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import {BrowserModule} from '@angular/platform-browser';
+import {ErrorHandler, NgModule} from '@angular/core';
+import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import {MyApp} from './app.component';
+import {HomePage} from '../pages/home/home';
+import {ListPage} from '../pages/list/list';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { Test } from '../components/test/test';
+import {StatusBar} from '@ionic-native/status-bar';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {Test} from '../components/test/test';
 import {LoginPage} from "../pages/login/login";
-import {Http, HttpModule} from "@angular/http";
-import { JwtClientProvider } from '../providers/jwt-client/jwt-client';
+import {Http, HttpModule, XHRBackend} from "@angular/http";
+import {JwtClientProvider} from '../providers/jwt-client/jwt-client';
 import {IonicStorageModule, Storage} from "@ionic/storage";
 import {AuthConfig, AuthHttp, JwtHelper} from "angular2-jwt";
-import { AuthProvider } from '../providers/auth/auth';
+import {AuthProvider} from '../providers/auth/auth';
 import {Env} from "../models/env";
+import {DefaultXHRBackendProvider} from "../providers/default-xhr-backend/default-xhr-backend";
+import {RedirectorProvider} from '../providers/redirector/redirector';
+import {Facebook} from "@ionic-native/facebook";
+import { UserResourceProvider } from '../providers/user-resource/user-resource';
 
-declare var ENV:Env;
+declare var ENV: Env;
 
 @NgModule({
     declarations: [
@@ -30,7 +34,7 @@ declare var ENV:Env;
     imports: [
         HttpModule,
         BrowserModule,
-        IonicModule.forRoot(MyApp , {}, {
+        IonicModule.forRoot(MyApp, {}, {
             links: [
                 {component: LoginPage, name: 'LoginPage', segment: 'login'},
                 {component: HomePage, name: 'HomePage', segment: 'home'},
@@ -55,11 +59,14 @@ declare var ENV:Env;
         JwtClientProvider,
         JwtHelper,
         AuthProvider,
+        RedirectorProvider,
+        Facebook,
+        UserResourceProvider,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
             deps: [Http, Storage],
-            useFactory(http, storage){
+            useFactory(http, storage) {
                 let authConfig = new AuthConfig({
                     headerPrefix: 'Bearer',
                     noJwtError: true,
@@ -68,7 +75,9 @@ declare var ENV:Env;
                 });
                 return new AuthHttp(authConfig, http);
             }
-        }
+        },
+        {provide: XHRBackend, useClass: DefaultXHRBackendProvider},
     ]
 })
-export class AppModule {}
+export class AppModule {
+}
