@@ -24,7 +24,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 \ApiRoute::version('v1', function () {
-    ApiRoute::group(['namespace' => 'CodeFlix\Http\Controllers\Api', 'as' => 'api'], function () {
+    ApiRoute::group([
+        'namespace' => 'CodeFlix\Http\Controllers\Api',
+        'as' => 'api',
+        'middleware' => 'bindings'
+        ], function () {
         //access token
         ApiRoute::post('/access_token', [
             'uses' => 'AuthController@accessToken',
@@ -52,11 +56,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
                 //logout
                 ApiRoute::post('/logout', 'AuthController@logout');
 
-                //rota test
-                ApiRoute::get('/test', function () {
-                    return 'api teste';
-                });
-
                 // rota para test phpunit
                 ApiRoute::get('/user', function (Request $request){
                     /**
@@ -65,6 +64,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
                     return $request->user('api');
                     //return app(\Dingo\Api\Auth\Auth::class)->user();
                     //return \Auth::guard('api')->user();
+                });
+
+                //rota para atualizar password
+                ApiRoute::patch('/user/settings', 'UsersController@updateSettings');
+
+                //rota payments
+                ApiRoute::post('/plans/{plan}/payments', 'PaymentsController@store');
+
+                //grupo assinante protegido pelo middleware check-subscription
+                ApiRoute::group(['middleware' => 'check-subscriptions'], function(){
+                    //rota test
+                    ApiRoute::get('/test', function () {
+                        return 'teste de validade subscription';
+                    });
                 });
             });
     });

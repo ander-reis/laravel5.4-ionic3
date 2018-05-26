@@ -20,6 +20,7 @@ import {DefaultXHRBackendProvider} from "../providers/default-xhr-backend/defaul
 import {RedirectorProvider} from '../providers/redirector/redirector';
 import {Facebook} from "@ionic-native/facebook";
 import { UserResourceProvider } from '../providers/user-resource/user-resource';
+import {MySettingsPage} from "../pages/my-settings/my-settings";
 
 declare var ENV: Env;
 
@@ -29,7 +30,8 @@ declare var ENV: Env;
         HomePage,
         ListPage,
         Test,
-        LoginPage
+        LoginPage,
+        MySettingsPage,
     ],
     imports: [
         HttpModule,
@@ -39,6 +41,7 @@ declare var ENV: Env;
                 {component: LoginPage, name: 'LoginPage', segment: 'login'},
                 {component: HomePage, name: 'HomePage', segment: 'home'},
                 {component: Test, name: 'TestPage', segment: 'test/:id/:name'},
+                {component: MySettingsPage, name: 'HomePage', segment: 'my-settings'},
             ]
         }),
         IonicStorageModule.forRoot({
@@ -51,7 +54,8 @@ declare var ENV: Env;
         HomePage,
         ListPage,
         Test,
-        LoginPage
+        LoginPage,
+        MySettingsPage
     ],
     providers: [
         StatusBar,

@@ -10,6 +10,8 @@ import { ListPage } from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {AuthProvider} from "../providers/auth/auth";
 import {RedirectorProvider} from "../providers/redirector/redirector";
+import {MySettingsPage} from "../pages/my-settings/my-settings";
+import md5 from 'crypto-md5';
 
 // import { Test } from '../components/test/test';
 
@@ -23,12 +25,13 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
   user: any;
+  gravatarUrl = 'https://www.gravatar.com/avatar/nouser.jpg';
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public  auth: AuthProvider,
-              public riderector: RedirectorProvider) {
+              public auth: AuthProvider,
+              public redirector: RedirectorProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -41,8 +44,9 @@ export class MyApp {
 
   initializeApp() {
       //carrega usuario
-      this.auth.user().then(user => {
+      this.auth.userSubject().subscribe(user => {
           this.user = user;
+          this.gravatar();
       });
 
       this.platform.ready().then(() => {
@@ -53,9 +57,16 @@ export class MyApp {
     });
   }
 
+  //gravatar
+    gravatar(){
+      if(this.user){
+          this.gravatarUrl = `https://www.gravatar.com/avatar/${md5(this.user.email, 'hex')}`;
+      }
+    }
+
   ngAfterViewInit(){
       //metodo redirecionamento login caso erro token
-      this.riderector.config(this.nav);
+      this.redirector.config(this.nav);
   }
 
   openPage(page) {
@@ -66,8 +77,13 @@ export class MyApp {
 
   logout(){
       this.auth.logout().then(() => {
-         alert('logout com sucesso');
-          this.nav.setRoot(LoginPage);
+          this.nav.setRoot('LoginPage');
+      }).catch(() => {
+          this.nav.setRoot('LoginPage');
       });
+  }
+
+  goToMySettings(){
+      this.nav.setRoot(MySettingsPage);
   }
 }

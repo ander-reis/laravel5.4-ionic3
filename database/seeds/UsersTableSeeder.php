@@ -17,5 +17,12 @@ class UsersTableSeeder extends Seeder
                 $user->verified = true;
                 $user->save();
             });
+
+        factory(\CodeFlix\Models\User::class, 1)->create([
+            'name' => 'Anderson',
+            'email' => 'ander-reis@hotmail.com',
+            'password' => bcrypt('secret'),
+            'remember_token' => str_random(10),
+        ]);
     }
 }

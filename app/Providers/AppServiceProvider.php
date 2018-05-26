@@ -2,10 +2,12 @@
 
 namespace CodeFlix\Providers;
 
+use CodeFlix\Exceptions\SubscriptionInvalidException;
 use CodeFlix\Models\Video;
 use Dingo\Api\Exception\Handler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\ValidationException;
 use Laravel\Dusk\DuskServiceProvider;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
@@ -64,6 +66,19 @@ class AppServiceProvider extends ServiceProvider
         });
         $handler->register(function(JWTException $exception){
             return response()->json(['error' => $exception->getMessage(), 'status_code:' => 401], 401);
+        });
+        $handler->register(function(ValidationException $exception){
+            return response()->json([
+                'error' => $exception->getMessage(),
+                'validation_error' => $exception->validator->getMessageBag()->toArray(),
+                'status_code:' => 422,
+            ], 422);
+        });
+        $handler->register(function(SubscriptionInvalidException $exception){
+            return response()->json([
+                'error' => 'subscription_valid_not_found',
+                'message' => $exception->getMessage(),
+            ], 403);
         });
     }
 }

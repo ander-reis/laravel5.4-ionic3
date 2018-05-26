@@ -44,6 +44,11 @@ https://ionicframework.com/docs/native/facebook/
 plataforma browser comando
 ionic cordova platform add browser
 
+gravatar
+https://www.npmjs.com/package/crypto-md5
+npm install --save crypto-md5@1.0.0
+
+
 github
 https://github.com/lksalencar/CodeFlix
 https://github.com/lksalencar/codeflix-app

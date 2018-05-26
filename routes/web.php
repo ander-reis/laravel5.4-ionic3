@@ -47,6 +47,8 @@ Route::group([
         Route::resource('users', 'UsersController');
         //CATEGORIAS
         Route::resource('categories', 'CategoriesController');
+        //PLANS
+        Route::resource('plans','PlansController');
         //IMAGE
         Route::name('series.thumb_asset')->get('series/{serie}/thumb_asset', 'SeriesController@thumbAsset');
         Route::name('series.thumb_small_asset')->get('series/{serie}/thumb_small_asset', 'SeriesController@thumbSmallAsset');

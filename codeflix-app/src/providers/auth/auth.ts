@@ -4,6 +4,7 @@ import {JwtClientProvider} from "../jwt-client/jwt-client";
 import {JwtPayload} from "../../models/jwt-payload";
 import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 import {UserResourceProvider} from "../user-resource/user-resource";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 /*
   Generated class for the AuthProvider provider.
@@ -15,6 +16,7 @@ import {UserResourceProvider} from "../user-resource/user-resource";
 export class AuthProvider {
 
     private _user = null;
+    private _userSubject = new BehaviorSubject(null);
 
     constructor(
         public jwtClient: JwtClientProvider,
@@ -26,6 +28,11 @@ export class AuthProvider {
         })
     }
 
+    //verifica a mudança em user
+    userSubject():BehaviorSubject<Object>{
+        return this._userSubject;
+    }
+
     //metodo para carregar dados do usuário
     user(): Promise<Object> {
         return new Promise((resolve) => {
@@ -35,6 +42,7 @@ export class AuthProvider {
             this.jwtClient.getPayload().then((payload: JwtPayload) => {
                 if (payload) {
                     this._user = payload.user;
+                    this._userSubject.next(this._user);
                 }
                 resolve(this._user);
             });
@@ -71,6 +79,7 @@ export class AuthProvider {
     logout() {
         return this.jwtClient.revokeToken().then(() => {
             this._user = null;
+            this._userSubject.next(this._user);
         });
     }
 }

@@ -2,7 +2,6 @@
 
 namespace CodeFlix\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,8 +13,14 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         \Dingo\Api\Event\ResponseWasMorphed::class => [
-            'CodeFlix\Listeners\AddTokenToHeaderListener',
+            \CodeFlix\Listeners\AddTokenToHeaderListener::class,
         ],
+        \CodeFlix\Events\PayPalPaymentApproved::class => [
+            \CodeFlix\Listeners\CreateOrderListener::class
+        ],
+        \Prettus\Repository\Events\RepositoryEntityCreated::class => [
+            \CodeFlix\Listeners\CreateSubscriptionListener::class
+        ]
     ];
 
     /**

@@ -58,5 +58,6 @@ class Kernel extends HttpKernel
         'guest' => \CodeFlix\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'isVerified' => \Jrean\UserVerification\Middleware\IsVerified::class,
+        'check-subscriptions' => \CodeFlix\Http\Middleware\CheckSubscriptions::class,
     ];
 }

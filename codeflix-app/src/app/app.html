@@ -2,10 +2,15 @@
   <ion-header>
     <ion-toolbar color="dark">
       <ion-title>CodeFlix - Menu</ion-title>
-      <ion-item color="dark">
-        <!--a interrogação serve para mostrar o nome se houver, caso contrario não mostra nada-->
-        <h2>{{user?.name}}</h2>
-      </ion-item>
+      <button ion-item menuClose color="dark" (click)="goToMySettings()">
+        <ion-avatar item-left>
+          <img [src]="gravatarUrl" alt="gravatar">
+        </ion-avatar>
+        <!--<ion-item color="dark">-->
+          <!--a interrogação serve para mostrar o nome se houver, caso contrario não mostra nada-->
+          <h2>{{user?.name}}</h2>
+        <!--</ion-item>-->
+      </button>
     </ion-toolbar>
   </ion-header>
 
