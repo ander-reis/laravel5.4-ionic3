@@ -5,7 +5,7 @@ namespace CodeFlix\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface PlanRepository
+ * Interface OrderRepository
  * @package namespace CodeFlix\Repositories;
  */
 interface PlanRepository extends RepositoryInterface

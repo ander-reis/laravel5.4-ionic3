@@ -91,6 +91,5 @@ $factory->define(\CodeFlix\Models\Order::class, function(\Faker\Generator $faker
 //subscription
 //$factory->define(\CodeFlix\Models\Subscription::class, function(\Faker\Generator $faker){
 //    return [
-//
 //    ];
 //});

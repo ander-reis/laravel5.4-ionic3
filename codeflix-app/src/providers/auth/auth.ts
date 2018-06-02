@@ -3,7 +3,7 @@ import 'rxjs/add/operator/map';
 import {JwtClientProvider} from "../jwt-client/jwt-client";
 import {JwtPayload} from "../../models/jwt-payload";
 import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
-import {UserResourceProvider} from "../user-resource/user-resource";
+import {UserResourceProvider} from "../user-resource/user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 /*
@@ -39,6 +39,7 @@ export class AuthProvider {
             if (this._user) {
                 resolve(this._user);
             }
+
             this.jwtClient.getPayload().then((payload: JwtPayload) => {
                 if (payload) {
                     this._user = payload.user;
@@ -65,13 +66,16 @@ export class AuthProvider {
     }
 
     //login facebook
-    loginFacebook():Promise<string> {
+    loginFacebook():Promise<Object> {
         return this.fb.login(['email'])
             .then((response: FacebookLoginResponse) => {
                 let accessToken = response.authResponse.accessToken;
                 return this.userResource
                     .register(accessToken)
-                    .then(token => this.jwtClient.setToken(token));
+                    .then(token => {
+                        this.jwtClient.setToken(token);
+                        return this.user();
+                    });
             });
     }
 

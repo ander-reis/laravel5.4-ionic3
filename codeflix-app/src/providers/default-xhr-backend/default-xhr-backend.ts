@@ -7,6 +7,8 @@ import {Observable} from "rxjs/Observable";
 import {appContainer} from "../../app/app.container";
 import {JwtClientProvider} from "../jwt-client/jwt-client";
 import {RedirectorProvider} from "../redirector/redirector";
+import {HomePage} from "../../pages/home/home";
+import {LoginPage} from "../../pages/login/login";
 
 /*
   Generated class for the DefaultXhrBackendProvider provider.
@@ -31,7 +33,7 @@ export class DefaultXHRBackendProvider extends XHRBackend{
           return response;
       }).catch(responseError => {
         //verificar se o status 401 e redirecionar para o login
-          this.unauthenticated(responseError);
+          this.onResponseError(responseError);
           return Observable.throw(responseError);
       });
       return xhrConnection;
@@ -46,10 +48,18 @@ export class DefaultXHRBackendProvider extends XHRBackend{
       }
    }
 
-   unauthenticated(responseError: Response){
+   onResponseError(responseError: Response){
        let redirector = appContainer().get(RedirectorProvider);
-       if(responseError.status === 401){
-           redirector.redirector();
+       switch (responseError.status){
+           case 401:
+               redirector.redirector();
+               break;
+           case 403:
+               let data = responseError.json();
+               let toHomePage = data.hasOwnProperty('error') && data.error == 'subscription_valid_not_found';
+               redirector.redirector(toHomePage ? 'HomePage' : 'LoginPage');
+               break;
        }
+
    }
 }

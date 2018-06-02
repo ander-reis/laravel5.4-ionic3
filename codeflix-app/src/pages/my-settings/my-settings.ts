@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {Auth} from "../../decorators/auth.decorator";
-import {UserResourceProvider} from "../../providers/user-resource/user-resource";
+import {UserResourceProvider} from "../../providers/user-resource/user.resource";
 
 @Auth()
 @Component({

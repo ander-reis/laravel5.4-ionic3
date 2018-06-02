@@ -26,7 +26,8 @@ class User extends Authenticatable implements TableInterface, JWTSubject
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'cpf'
     ];
 
     /**
@@ -121,7 +122,8 @@ class User extends Authenticatable implements TableInterface, JWTSubject
             'user' => [
                 'id' => $this->id,
                 'name' => $this->name,
-                'email' => $this->email
+                'email' => $this->email,
+                'subscription_valid' => $this->hasSubscriptionValid()
             ]
         ];
     }

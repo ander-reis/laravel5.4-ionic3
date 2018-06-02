@@ -69,6 +69,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
                 //rota para atualizar password
                 ApiRoute::patch('/user/settings', 'UsersController@updateSettings');
 
+                //rota para cpf
+                ApiRoute::patch('/user/cpf', 'UsersController@addCpf');
+
+                //rota plans
+                ApiRoute::get('/plans', 'PlansController@index');
+
                 //rota payments
                 ApiRoute::post('/plans/{plan}/payments', 'PaymentsController@store');
 

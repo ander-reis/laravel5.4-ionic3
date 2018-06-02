@@ -19,8 +19,14 @@ import {Env} from "../models/env";
 import {DefaultXHRBackendProvider} from "../providers/default-xhr-backend/default-xhr-backend";
 import {RedirectorProvider} from '../providers/redirector/redirector';
 import {Facebook} from "@ionic-native/facebook";
-import { UserResourceProvider } from '../providers/user-resource/user-resource';
+import { UserResourceProvider } from '../providers/user-resource/user.resource';
 import {MySettingsPage} from "../pages/my-settings/my-settings";
+import {AddCpfPage} from "../pages/add-cpf/add-cpf";
+import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
+import {PlansPage} from "../pages/plans/plans";
+import {PaymentPage} from "../pages/payment/payment";
+import {TextMaskModule} from "angular2-text-mask";
+import { PlanResourceProvider } from '../providers/plan-resource/plan.resource';
 
 declare var ENV: Env;
 
@@ -32,16 +38,25 @@ declare var ENV: Env;
         Test,
         LoginPage,
         MySettingsPage,
+        AddCpfPage,
+        PlansPage,
+        PaymentPage,
+        HomeSubscriberPage
     ],
     imports: [
         HttpModule,
         BrowserModule,
+        TextMaskModule,
         IonicModule.forRoot(MyApp, {}, {
             links: [
                 {component: LoginPage, name: 'LoginPage', segment: 'login'},
                 {component: HomePage, name: 'HomePage', segment: 'home'},
                 {component: Test, name: 'TestPage', segment: 'test/:id/:name'},
                 {component: MySettingsPage, name: 'HomePage', segment: 'my-settings'},
+                {component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf'},
+                {component: HomeSubscriberPage, name: 'HomeSubscriberPage', segment: 'subscriber/home'},
+                {component: PlansPage, name: 'PlansPage', segment: 'plans'},
+                {component: PaymentPage, name: 'PaymentPage', segment: 'plans/:plan/payment'},
             ]
         }),
         IonicStorageModule.forRoot({
@@ -55,7 +70,11 @@ declare var ENV: Env;
         ListPage,
         Test,
         LoginPage,
-        MySettingsPage
+        MySettingsPage,
+        AddCpfPage,
+        PlansPage,
+        PaymentPage,
+        HomeSubscriberPage,
     ],
     providers: [
         StatusBar,
@@ -66,6 +85,7 @@ declare var ENV: Env;
         RedirectorProvider,
         Facebook,
         UserResourceProvider,
+        PlanResourceProvider,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,
