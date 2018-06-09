@@ -75,8 +75,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
                 //rota plans
                 ApiRoute::get('/plans', 'PlansController@index');
 
-                //rota payments
-                ApiRoute::post('/plans/{plan}/payments', 'PaymentsController@store');
+                //rota criando pagamento
+                ApiRoute::post('/plans/{plan}/payments', 'PaymentsController@makePayment');
+
+                //rota aprovando pagamento
+                ApiRoute::patch('/plans/{plan}/payments', 'PaymentsController@store');
 
                 //grupo assinante protegido pelo middleware check-subscription
                 ApiRoute::group(['middleware' => 'check-subscriptions'], function(){

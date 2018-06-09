@@ -8,35 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Plan extends Model implements Transformable, TableInterface
+class PayPalWebProfile extends Model implements Transformable, TableInterface
 {
-    const DURATION_YEARLY = 1;
-    const DURATION_MONTHLY = 2;
-
     use TransformableTrait;
     use SoftDeletes;
 
-    protected $fillable = [
-        'name',
-        'description',
-        'value',
-        'duration',
-        'paypal_web_profile_id'
-    ];
-
-    protected $casts = [
-        'duration' => 'integer'
-    ];
-
-    public function getSkuAttribute()
-    {
-        return "plan-{$this->id}";
-    }
-
-    public function webProfile()
-    {
-        return $this->belongsTo(PayPalWebProfile::class, 'paypal_web_profile_id');
-    }
+    protected $table = 'paypal_web_profiles';
+    protected $fillable = ['name','logo_url','code'];
 
     /**
      * A list of headers to be used when a table is displayed
@@ -45,7 +23,7 @@ class Plan extends Model implements Transformable, TableInterface
      */
     public function getTableHeaders()
     {
-        return ['#', 'Nome', 'Descrição', 'Duração'];
+        return ['#', 'Nome', 'Logo Url'];
     }
 
     /**
@@ -55,6 +33,7 @@ class Plan extends Model implements Transformable, TableInterface
      * @param string $header
      * @return mixed
      */
+
     public function getValueForHeader($header)
     {
         switch ($header){
@@ -62,10 +41,8 @@ class Plan extends Model implements Transformable, TableInterface
                 return $this->id;
             case 'Nome':
                 return $this->name;
-            case 'Descrição':
-                return $this->description;
-            case 'Duração':
-                return $this->duration == self::DURATION_MONTHLY ? 'Monthly' : 'Yearly';
+            case 'Logo Url':
+                return \BootstrapImage::thumbnail($this->logo_url, 'thumbnail');
         }
     }
 }
