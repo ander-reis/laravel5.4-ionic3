@@ -7,8 +7,6 @@ import {Observable} from "rxjs/Observable";
 import {appContainer} from "../../app/app.container";
 import {JwtClientProvider} from "../jwt-client/jwt-client";
 import {RedirectorProvider} from "../redirector/redirector";
-import {HomePage} from "../../pages/home/home";
-import {LoginPage} from "../../pages/login/login";
 
 /*
   Generated class for the DefaultXhrBackendProvider provider.

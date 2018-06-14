@@ -101,7 +101,9 @@ class PaymentClient
             ->setTransactions([$transaction]);
 
         $payment->create($this->apiContext);
+
         //dd($payment);
+
         return $payment;
     }
 

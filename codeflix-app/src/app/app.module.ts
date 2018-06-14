@@ -27,6 +27,7 @@ import {PlansPage} from "../pages/plans/plans";
 import {PaymentPage} from "../pages/payment/payment";
 import {TextMaskModule} from "angular2-text-mask";
 import { PlanResourceProvider } from '../providers/plan-resource/plan.resource';
+import { PaymentResourceProvider } from '../providers/payment-resource/payment.resource';
 
 declare var ENV: Env;
 
@@ -56,7 +57,7 @@ declare var ENV: Env;
                 {component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf'},
                 {component: HomeSubscriberPage, name: 'HomeSubscriberPage', segment: 'subscriber/home'},
                 {component: PlansPage, name: 'PlansPage', segment: 'plans'},
-                {component: PaymentPage, name: 'PaymentPage', segment: 'plans/:plan/payment'},
+                {component: PaymentPage, name: 'PaymentPage', segment: 'plan/:plan/payment'},
             ]
         }),
         IonicStorageModule.forRoot({
@@ -86,6 +87,7 @@ declare var ENV: Env;
         Facebook,
         UserResourceProvider,
         PlanResourceProvider,
+        PaymentResourceProvider,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,

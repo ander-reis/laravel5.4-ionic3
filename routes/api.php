@@ -59,11 +59,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
                 // rota para test phpunit
                 ApiRoute::get('/user', function (Request $request){
                     /**
-                     * 3 metodos para retonar user autenticado
+                     * 3 metodos de exemplo para retonar user autenticado
                      */
                     return $request->user('api');
                     //return app(\Dingo\Api\Auth\Auth::class)->user();
                     //return \Auth::guard('api')->user();
+
+                    //teste loading payment
+                    //throw new \Exception('teste');
                 });
 
                 //rota para atualizar password
