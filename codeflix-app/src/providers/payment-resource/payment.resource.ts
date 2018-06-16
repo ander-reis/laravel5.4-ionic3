@@ -28,4 +28,13 @@ export class PaymentResourceProvider {
           .post(`${ENV.API_URL}/plans/${planId}/payments`, {})
           .map(response => response.json());
   }
+
+  doPayment(planId: number, paymentId: string, payerId: string): Observable<Object>{
+      return this.authHttp
+          .patch(`${ENV.API_URL}/plans/${planId}/payments`, {
+              payment_id: paymentId,
+              payer_id: payerId
+          })
+          .map(response => response.json());
+  }
 }

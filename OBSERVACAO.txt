@@ -1,1 +1,30 @@
 No final do curso testar login facebook que não pode ser testado no teste
+
+ao reeinstalar o laravel gerar o jwt secret:
+php artisan jwt:secret
+
+cartão de crédito para teste
+Bank Account
+Account Number:
+525126685301
+
+Routing Number:
+237
+
+Credit Card
+Credit Card Number:
+4002354176071588
+
+Credit Card Type:
+VISA
+
+Expiration Date:
+06/2023
+
+PayPal
+Balance:
+9999.00 BRL
+
+github
+https://github.com/lksalencar/CodeFlix
+https://github.com/lksalencar/codeflix-app

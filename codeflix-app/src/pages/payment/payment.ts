@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import scriptjs from 'scriptjs';
 import {UserResourceProvider} from "../../providers/user-resource/user.resource";
 import {PaymentResourceProvider} from "../../providers/payment-resource/payment.resource";
@@ -31,6 +31,7 @@ export class PaymentPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController,
               public userResource: UserResourceProvider,
               public paymentResource: PaymentResourceProvider) {
       this.planId = +this.navParams.get('plan');
@@ -75,7 +76,11 @@ export class PaymentPage {
   makePayPalPlus(){
       if(this.ppplusLoaded && this.payment !== null && this.user !== null){
           this.loading.dismiss();
+
+          let self = this;
+
           this.ppp = PAYPAL.apps.PPP({
+              buttonLocation: 'outside',
               approvalUrl: this.payment.approval_url,
               placeholder: 'ppplus',
               mode: 'sandbox',
@@ -85,9 +90,43 @@ export class PaymentPage {
               payerLastName: this.user.name.split(" ")[1],
               payerEmail: this.user.email,
               payerTaxId: this.user.cpf,
-              payerTaxIdType: 'BR_CPF'
+              payerTaxIdType: 'BR_CPF',
+              onContinue(cardToken, payerId){
+                  self.doPayment(payerId);
+              }
           });
       }
   }
 
+  buy(){
+      this.ppp.doContinue();
+  }
+
+  doPayment(payerId){
+      this.loading = this.loadingCtrl.create({
+          spinner: 'hide',
+          content: 'Realizando Pagamento...'
+      });
+      this.loading.present();
+
+      this.paymentResource.doPayment(this.planId, this.payment.payment_id, payerId)
+          .subscribe(() => {
+              this.loading.dismiss();
+              let alert = this.alertCtrl.create({
+                  title: 'Mensagem',
+                  subTitle: 'Pagamento efetuado com sucesso.',
+                  buttons: ['ok']
+              });
+              alert.present();
+
+          }, () => {
+              this.loading.dismiss();
+              let alert = this.alertCtrl.create({
+                 title: 'Mensagme de erro',
+                 subTitle: 'Seu pagamento não foi aprovado.',
+                  buttons: ['ok']
+              });
+              alert.present();
+          });
+  }
 }
