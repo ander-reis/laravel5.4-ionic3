@@ -81,10 +81,10 @@
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
-    <plugin name="cordova-plugin-facebook4" spec="~2.1.0">
-        <variable name="APP_ID" value="2111833485739951" />
-        <variable name="APP_NAME" value="laravel-ionic3" />
-    </plugin>
+    <config-file parent="/resources" target="./res/values/strings.xml">
+        <string name="fb_app_id">2111833485739951</string>
+        <string name="fb_app_name">laravel-ionic3</string>
+    </config-file>
     <engine name="browser" spec="~4.1.0" />
-    <engine name="android" spec="~6.1.2" />
+    <engine name="android" spec="~7.0.0" />
 </widget>

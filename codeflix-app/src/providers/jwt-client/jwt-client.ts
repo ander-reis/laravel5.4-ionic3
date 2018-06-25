@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Headers, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 import {JwtCredentials} from "../../models/jwt-credentials";
 import {Storage} from "@ionic/storage";
 import {AuthHttp, JwtHelper} from "angular2-jwt";
@@ -65,6 +66,17 @@ export class JwtClientProvider {
     //metodo para armazenar token no storage
     accessToken(jwtCredentials: JwtCredentials):Promise<string> {
         return this.authHttp.post(`${ENV.API_URL}/access_token`, jwtCredentials)
+            .toPromise()
+            .then((response: Response) => {
+                let token = response.json().token;
+                this._token = token;
+                this.storage.set(ENV.TOKEN_NAME, this._token);
+                return token;
+            });
+    }
+
+    refreshToken(){
+        return this.authHttp.post(`${ENV.API_URL}/refresh_token`, {})
             .toPromise()
             .then((response: Response) => {
                 let token = response.json().token;

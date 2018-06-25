@@ -79,6 +79,12 @@ export class AuthProvider {
             });
     }
 
+    refresh():Promise<Object>{
+        return this.jwtClient.refreshToken().then(() => {
+            return this.user();
+        })
+    }
+
     //metodo responsavel pelo logout
     logout() {
         return this.jwtClient.revokeToken().then(() => {
