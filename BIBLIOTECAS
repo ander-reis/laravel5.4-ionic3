@@ -38,6 +38,11 @@ composer require codeedu/code_validator:0.0.2
 paypal
 https://github.com/paypal/PayPal-PHP-SDK
 
+serialização => https://fractal.thephpleague.com/transformers/
+composer require league/fractal:0.16.0
+
+
+
 
 /***** ionic *****/
 incluir token no header
@@ -61,3 +66,11 @@ https://github.com/text-mask/text-mask
 paypal plus
 npm install scriptjs@2.5.8 --save
 https://github.com/ded/script.js
+
+streaming-media plugin
+ionic cordova plugin add cordova-plugin-streaming-media
+npm install --save @ionic-native/streaming-media
+
+angular2-moment
+https://www.npmjs.com/package/angular2-moment
+npm install --save angular2-moment

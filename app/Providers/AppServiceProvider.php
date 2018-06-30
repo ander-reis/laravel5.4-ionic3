@@ -77,25 +77,5 @@ class AppServiceProvider extends ServiceProvider
             return $apiContext;
         });
 
-        $handler = app(Handler::class);
-        $handler->register(function(AuthenticationException $exception){
-            return response()->json(['error' => 'Unauthenticated', 'status_code:' => 401], 401);
-        });
-        $handler->register(function(JWTException $exception){
-            return response()->json(['error' => $exception->getMessage(), 'status_code:' => 401], 401);
-        });
-        $handler->register(function(ValidationException $exception){
-            return response()->json([
-                'error' => $exception->getMessage(),
-                'validation_error' => $exception->validator->getMessageBag()->toArray(),
-                'status_code:' => 422,
-            ], 422);
-        });
-        $handler->register(function(SubscriptionInvalidException $exception){
-            return response()->json([
-                'error' => 'subscription_valid_not_found',
-                'message' => $exception->getMessage(),
-            ], 403);
-        });
     }
 }

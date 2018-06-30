@@ -86,6 +86,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
                 //grupo assinante protegido pelo middleware check-subscription
                 ApiRoute::group(['middleware' => 'check-subscriptions'], function(){
+
+                    //rota para ver videos na api
+                    ApiRoute::resource('videos', 'VideosController', ['only' => ['index', 'show']]);
+
                     //rota test
                     ApiRoute::get('/test', function () {
                         return 'teste de validade subscription';

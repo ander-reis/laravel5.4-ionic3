@@ -29,14 +29,14 @@ export class HomePage {
     }
 
     ionViewDidLoad(){
-
+        /*
         this.authHttp.get('http://localhost:8000/api/user')
             .toPromise()
             .then(() => {
                 console.log('primeira');
             });
 
-        /*
+
         //teste troca de token automatico
         setInterval(() => {
             this.authHttp.get('http://localhost:8000/api/user')

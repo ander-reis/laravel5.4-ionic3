@@ -20,6 +20,13 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
      */
     use ThumbUploads, VideoUploads, Uploads;
 
+    protected $fieldSearchable = [
+        'title' => 'like',
+        'description' => 'like',
+        'serie.title' => 'like',
+        'categories.category' => 'like'
+    ];
+
     /**
      * metodo update
      * @param array $attributes
@@ -44,8 +51,6 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
     {
         return Video::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria

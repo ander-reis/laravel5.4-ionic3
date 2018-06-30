@@ -23,11 +23,22 @@ ion-app{
   }
 }
 
-.toast-reverse{
-  .toast-container{
+.toast-reverse {
+  .toast-container {
     background-color: map_get($colors, light) !important;
-    .toast-message{
+    .toast-message {
       color: map_get($colors, dark) !important;
+    }
+  }
+
+  .card-video-play {
+    position: relative;
+    text-align: center;
+    div {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      font-size: 40px;
     }
   }
 }

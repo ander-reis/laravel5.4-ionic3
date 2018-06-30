@@ -6,12 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+// import { ListPage } from '../pages/list/list';
 import {LoginPage} from "../pages/login/login";
 import {AuthProvider} from "../providers/auth/auth";
 import {RedirectorProvider} from "../providers/redirector/redirector";
 import {MySettingsPage} from "../pages/my-settings/my-settings";
 import md5 from 'crypto-md5';
+import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 
 // import { Test } from '../components/test/test';
 
@@ -23,6 +24,7 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
+  pageSubscriber: Array<{title: string, component: any}>;
   pages: Array<{title: string, component: any}>;
   user: any;
   gravatarUrl = 'https://www.gravatar.com/avatar/nouser.jpg';
@@ -34,10 +36,13 @@ export class MyApp {
               public redirector: RedirectorProvider) {
     this.initializeApp();
 
+    this.pageSubscriber = [
+        {title: 'Assine Agora', component: HomeSubscriberPage}
+    ];
+
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
     ];
 
   }

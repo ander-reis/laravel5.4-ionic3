@@ -124,6 +124,7 @@ class User extends Authenticatable implements TableInterface, JWTSubject
                 'name' => $this->name,
                 'email' => $this->email,
                 'subscription_valid' => $this->hasSubscriptionValid()
+//                'subscription_valid' => false
             ]
         ];
     }

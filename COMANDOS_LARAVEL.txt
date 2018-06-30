@@ -55,3 +55,14 @@ php artisan make:form Forms/SerieForm --fields="title:text, description:textarea
 
 comando para rodar ionic no platform browser
 ionic cordova run browser
+
+comando para criar um provider
+php artisan make:provider Name
+
+
+COMANDO IONIC
+provider
+ionic generate provider Name
+
+transformer
+php artisan transformer Name
