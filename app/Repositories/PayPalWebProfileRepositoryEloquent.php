@@ -23,6 +23,7 @@ class PayPalWebProfileRepositoryEloquent extends BaseRepository implements PayPa
         $attributes['code'] = 'processing';
 
         \DB::beginTransaction();
+        //dd(\DB::beginTransaction());
         try {
             $model = parent::create($attributes);
         } catch (\Exception $exception) {

@@ -3,12 +3,26 @@
 namespace CodeFlix\Http\Controllers\Api;
 
 use CodeFlix\Http\Controllers\Controller;
+use CodeFlix\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
+
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
+     * AuthController constructor.
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     public function accessToken(Request $request)
     {

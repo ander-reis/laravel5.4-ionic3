@@ -17,6 +17,7 @@ class UpdatePayPalWebProfileListener
      * Create the event listener.
      *
      * @return void
+     * @param WebProfileClient $webProfileClient
      */
     public function __construct(WebProfileClient $webProfileClient)
     {

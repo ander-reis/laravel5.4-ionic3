@@ -28,3 +28,10 @@ Balance:
 github
 https://github.com/lksalencar/CodeFlix
 https://github.com/lksalencar/codeflix-app
+
+configurações host local:
+"API_URL": "http://localhost:8000/api",
+
+configurações host para android amulator:
+"API_URL": "http://192.168.56.1:8000/api", ===> ip host da maquina
+ rodar no laravel em "php artisan serve --host=0.0.0.0"

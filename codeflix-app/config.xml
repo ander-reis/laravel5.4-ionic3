@@ -86,6 +86,7 @@
         <string name="fb_app_name">laravel-ionic3</string>
     </config-file>
     <plugin name="com.hutchind.cordova.plugins.streamingmedia" spec="~0.1.4" />
+    <allow-navigation href="http://192.168.13.86:8100" />
     <engine name="android" spec="~7.0.0" />
     <engine name="browser" spec="~5.0.3" />
 </widget>

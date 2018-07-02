@@ -1,3 +1,4 @@
+casa:
 global packages:
 
     @ionic/cli-utils : 1.0.0
@@ -18,3 +19,15 @@ System:
     Xcode      : not installed
     ios-deploy : not installed
     ios-sim    : not installed
+
+
+sinpro
+cli packages: (C:\Users\Anderson\AppData\Roaming\npm\node_modules)
+    @ionic/cli-utils  : 1.9.2
+    ionic (Ionic CLI) : 3.9.2
+
+System:
+
+    Node : v6.11.0
+    npm  : 3.10.9
+    OS   : Windows 7
