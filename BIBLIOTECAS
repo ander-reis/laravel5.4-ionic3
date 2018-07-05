@@ -74,3 +74,14 @@ npm install --save @ionic-native/streaming-media
 angular2-moment
 https://www.npmjs.com/package/angular2-moment
 npm install --save angular2-moment
+
+sqlite porter
+ionic cordova plugin add uk.co.workingedge.cordova.plugin.sqliteporter
+npm install --save @ionic-native/sqlite-porter
+
+sqlite native
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic-native/sqlite
+
+loader webpack
+npm install raw-loader@0.5.1 --save-dev

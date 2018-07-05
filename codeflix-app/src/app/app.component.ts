@@ -13,6 +13,7 @@ import {RedirectorProvider} from "../providers/redirector/redirector";
 import {MySettingsPage} from "../pages/my-settings/my-settings";
 import md5 from 'crypto-md5';
 import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
+import {DB} from "../providers/sqlite/db";
 
 // import { Test } from '../components/test/test';
 
@@ -33,7 +34,9 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               public auth: AuthProvider,
-              public redirector: RedirectorProvider) {
+              public redirector: RedirectorProvider,
+              public db: DB
+  ) {
     this.initializeApp();
 
     this.pageSubscriber = [
@@ -55,6 +58,7 @@ export class MyApp {
       });
 
       this.platform.ready().then(() => {
+          this.db.createSchema();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
