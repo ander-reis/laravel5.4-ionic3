@@ -87,9 +87,8 @@
     </config-file>
     <plugin name="com.hutchind.cordova.plugins.streamingmedia" spec="~0.1.4" />
     <allow-navigation href="http://192.168.13.86:8100" />
+    <engine name="android" spec="~7.0.0" />
+    <engine name="browser" spec="~5.0.3" />
     <plugin name="uk.co.workingedge.cordova.plugin.sqliteporter" spec="^1.0.3" />
     <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
-    <allow-navigation href="http://192.168.1.173:8100" />
-    <engine name="browser" spec="~5.0.3" />
-    <engine name="android" spec="~7.0.0" />
 </widget>

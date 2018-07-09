@@ -66,6 +66,3 @@ ionic generate provider Name
 
 transformer
 php artisan transformer Name
-
-browser
-ionic cordova run browser
