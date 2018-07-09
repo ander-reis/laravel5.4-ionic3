@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {APP_INITIALIZER, ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 
 import {MyApp} from './app.component';
@@ -19,16 +19,16 @@ import {Env} from "../models/env";
 import {DefaultXHRBackendProvider} from "../providers/default-xhr-backend/default-xhr-backend";
 import {RedirectorProvider} from '../providers/redirector/redirector';
 import {Facebook} from "@ionic-native/facebook";
-import { UserResourceProvider } from '../providers/user-resource/user.resource';
+import {UserResourceProvider} from '../providers/user-resource/user.resource';
 import {MySettingsPage} from "../pages/my-settings/my-settings";
 import {AddCpfPage} from "../pages/add-cpf/add-cpf";
 import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 import {PlansPage} from "../pages/plans/plans";
 import {PaymentPage} from "../pages/payment/payment";
 import {TextMaskModule} from "angular2-text-mask";
-import { PlanResourceProvider } from '../providers/plan-resource/plan.resource';
-import { PaymentResourceProvider } from '../providers/payment-resource/payment.resource';
-import { VideoResourceProvider } from '../providers/video-resource/video.resource';
+import {PlanResourceProvider} from '../providers/plan-resource/plan.resource';
+import {PaymentResourceProvider} from '../providers/payment-resource/payment.resource';
+import {VideoResourceProvider} from '../providers/video-resource/video.resource';
 import {VideoPlayPage} from "../pages/video-play/video-play";
 import {StreamingMedia} from "@ionic-native/streaming-media";
 import {MomentModule} from "angular2-moment";
@@ -36,6 +36,10 @@ import 'moment/locale/pt-br';
 import {SQLite} from "@ionic-native/sqlite";
 import {SQLitePorter} from "@ionic-native/sqlite-porter";
 import {DB} from "../providers/sqlite/db";
+import {UserModel} from "../providers/sqlite/user.model";
+import {AuthOffline} from "../providers/auth/auth-offline";
+import { AppConfigProvider } from '../providers/app-config/app-config';
+import {AuthFactory} from "../providers/auth/auth-factory";
 
 declare var ENV: Env;
 
@@ -90,11 +94,22 @@ declare var ENV: Env;
         VideoPlayPage
     ],
     providers: [
+        AppConfigProvider,
+        {
+            provide: APP_INITIALIZER,
+            deps: [AppConfigProvider],
+            useFactory(appConfigProvider){
+                return () => appConfigProvider.load()
+            },
+            multi: true
+        },
         StatusBar,
         SplashScreen,
         JwtClientProvider,
         JwtHelper,
         AuthProvider,
+        AuthOffline,
+        AuthFactory,
         RedirectorProvider,
         Facebook,
         UserResourceProvider,
@@ -105,6 +120,7 @@ declare var ENV: Env;
         SQLite,
         SQLitePorter,
         DB,
+        UserModel,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,

@@ -1,10 +1,13 @@
 
 import {appContainer} from "../app/app.container";
-import {AuthProvider} from "../providers/auth/auth";
+//import {AuthProvider} from "../providers/auth/auth";
 import {Nav} from "ionic-angular";
 import {LoginPage} from "../pages/login/login";
+import {AuthFactory} from "../providers/auth/auth-factory";
+import {AuthGuard} from "../providers/auth/auth-guard";
 
 export const Auth = () => {
+
     return (target: any) => {
         // aqui é verificado se a pessoa pode acessar a página ou não
         target.prototype.ionViewCanEnter = function() {
@@ -16,7 +19,7 @@ export const Auth = () => {
                 return false;
             }
 
-            let authService = appContainer().get(AuthProvider);
+            let authService: AuthGuard = appContainer().get(AuthFactory).get();
             return authService.check().then(isLogged => {
                 if(!isLogged){
                     setTimeout(() => {

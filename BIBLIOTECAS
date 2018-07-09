@@ -85,3 +85,6 @@ npm install --save @ionic-native/sqlite
 
 loader webpack
 npm install raw-loader@0.5.1 --save-dev
+
+abstrai objeto
+npm install object.values@1.0.4 --save
