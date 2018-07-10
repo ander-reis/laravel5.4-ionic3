@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {SQLitePorter} from "@ionic-native/sqlite-porter";
 import {SQLite, SQLiteObject} from "@ionic-native/sqlite";
 import {Env} from "../../models/env";
-import sql from "../../sql/db.sql";
+import sql from '../../sql/db.sql';
 
 declare var ENV: Env;
 
@@ -26,15 +26,27 @@ export class DB {
         });
     }
 
-    createSchema(){
-        this.openOrCreateDatabase()
+    createSchema() {
+        return this.openOrCreateDatabase()
             .then((db: SQLiteObject) => {
                 let dbInstance = db._objectInstance;
-                this.sqlitePorter.importSqlToDb(dbInstance, sql)
+                return this.sqlitePorter.importSqlToDb(dbInstance, sql)
                     .then(() => {
                         console.log('SQLite imported');
                     })
-                    .catch(e => console.log(e));
+                    .catch(e => {
+                        console.log(e)
+                    });
+            });
+    }
+
+    executeSQL(sql: string, params: Array<any> = []): Promise<any>{
+        return this.openOrCreateDatabase()
+            .then((db: SQLiteObject) => {
+                console.log(db.executeSql(sql, params));
+                return db.executeSql(sql, params);
+            }).catch(e => {
+                console.log(e);
             });
     }
 

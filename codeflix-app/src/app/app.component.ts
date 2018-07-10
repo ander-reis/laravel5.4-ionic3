@@ -14,6 +14,8 @@ import {MySettingsPage} from "../pages/my-settings/my-settings";
 import md5 from 'crypto-md5';
 import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 import {DB} from "../providers/sqlite/db";
+import {UserModel} from "../providers/sqlite/user.model";
+import {AuthOffline} from "../providers/auth/auth-offline";
 
 // import { Test } from '../components/test/test';
 
@@ -34,8 +36,10 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               public auth: AuthProvider,
+              public authOffline: AuthOffline,
               public redirector: RedirectorProvider,
-              public db: DB
+              public db: DB,
+              public userModel: UserModel
   ) {
     this.initializeApp();
 
@@ -57,8 +61,38 @@ export class MyApp {
           this.gravatar();
       });
 
+      this.authOffline.userSubject().subscribe(user => {
+          this.user = user;
+          this.gravatar();
+      });
+
       this.platform.ready().then(() => {
+
           this.db.createSchema();
+
+          // this.db.createSchema()
+              // .then(() => {
+
+                  // this.userModel.insert({
+                  //     id: 1,
+                  //     name: 'anderson',
+                  //     email: 'admin@user.com'
+                  // });
+
+                  // this.userModel.find(1)
+                  //     .then((user) => {
+                  //     console.log(user);
+                  // }).catch(e => {
+                  //     console.log(e);
+                  // });
+
+                  // this.userModel.findByField('email', 'admin@user.com')
+                  //     .then(resultset => {
+                  //         console.log(resultset);
+                  //     });
+
+              // });
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
@@ -69,7 +103,7 @@ export class MyApp {
   //gravatar
     gravatar(){
       if(this.user){
-          this.gravatarUrl = `https://www.gravatar.com/avatar/${md5(this.user.email, 'hex')}`;
+          this.gravatarUrl = `https://www.gravatar.com/avatar/${md5(this.user.email, 'hex')}.jpg`;
       }
     }
 

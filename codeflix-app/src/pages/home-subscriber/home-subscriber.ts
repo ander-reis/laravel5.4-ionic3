@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {VideoResourceProvider} from "../../providers/video-resource/video.resource";
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
+import {Auth} from "../../decorators/auth.decorator";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -10,6 +11,7 @@ import "rxjs/add/operator/debounceTime";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+@Auth()
 @IonicPage()
 @Component({
   selector: 'page-home-subscriber',
@@ -26,25 +28,24 @@ export class HomeSubscriberPage {
     search = '';
     formSearchControl = new FormControl();
 
-  constructor(
-      public navCtrl: NavController,
-      public navParams: NavParams,
-      public videoResource: VideoResourceProvider) {
-  }
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                public videoResource: VideoResourceProvider) {
+    }
 
     getVideos() {
         return this.videoResource
             .latest(this.page, this.search);
     }
 
-  ionViewDidLoad() {
-      this.searchVideos();
+    ionViewDidLoad() {
+        this.searchVideos();
 
-      this.getVideos()
-          .subscribe((videos) => {
-              this.videos = videos;
-          });
-  }
+        // this.getVideos()
+        //     .subscribe((videos) => {
+        //         this.videos = videos;
+        //     });
+    }
 
     searchVideos() {
         this.formSearchControl
@@ -65,30 +66,30 @@ export class HomeSubscriberPage {
             });
     }
 
-  doRefresh(refresher){
-      this.reset();
+    doRefresh(refresher) {
+        this.reset();
 
-      this.getVideos()
-          .subscribe((videos) => {
-              this.videos = videos;
-              refresher.complete();
-          }, () => refresher.complete());
-  }
+        this.getVideos()
+            .subscribe((videos) => {
+                this.videos = videos;
+                refresher.complete();
+            }, () => refresher.complete());
+    }
 
-    doInfinite(infiniteScroll){
+    doInfinite(infiniteScroll) {
         this.page++;
         this.getVideos()
             .subscribe((videos) => {
                 //videos.data e videos.meta
                 this.videos.data = this.videos.data.concat(videos.data);
-                if(videos.data.length == 0){
+                if (videos.data.length == 0) {
                     this.canMoreVideos = false;
                 }
                 infiniteScroll.complete();
-            },() => infiniteScroll.complete());
+            }, () => infiniteScroll.complete());
     }
 
-    reset(){
+    reset() {
         this.page = 1;
         this.canMoreVideos = true;
     }
