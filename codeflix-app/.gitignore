@@ -34,3 +34,6 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .env.json
+prepare/
+codeflix.db
+

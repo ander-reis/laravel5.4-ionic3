@@ -1,0 +1,37 @@
+No final do curso testar login facebook que não pode ser testado no teste
+
+ao reeinstalar o laravel gerar o jwt secret:
+php artisan jwt:secret
+
+cartão de crédito para teste
+Bank Account
+Account Number:
+525126685301
+
+Routing Number:
+237
+
+Credit Card
+Credit Card Number:
+4002354176071588
+
+Credit Card Type:
+VISA
+
+Expiration Date:
+06/2023
+
+PayPal
+Balance:
+9999.00 BRL
+
+github
+https://github.com/lksalencar/CodeFlix
+https://github.com/lksalencar/codeflix-app
+
+configurações host local:
+"API_URL": "http://localhost:8000/api",
+
+configurações host para android amulator:
+"API_URL": "http://192.168.56.1:8000/api", ===> ip host da maquina
+ rodar no laravel em "php artisan serve --host=0.0.0.0"
