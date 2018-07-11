@@ -24,7 +24,9 @@ export abstract class DBModel {
         let tokens = "?,".repeat(columns.length);
         tokens = tokens.substring(0, tokens.length - 1);
         let sql = `INSERT INTO \`${this.table}\` (${columns.join(',')}) VALUES (${tokens})`;
-        console.log(sql);
+
+        //console.log(sql);
+
         return this.db.executeSQL(sql, objectValues(params));
     }
 

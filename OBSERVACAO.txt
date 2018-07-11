@@ -32,6 +32,18 @@ https://github.com/lksalencar/codeflix-app
 configurações host local:
 "API_URL": "http://localhost:8000/api",
 
-configurações host para android amulator:
+configurações host para android emulator:
 "API_URL": "http://192.168.56.1:8000/api", ===> ip host da maquina
  rodar no laravel em "php artisan serve --host=0.0.0.0"
+
+caminho adb shell, com emulador aberto:
+/data/data/com.ander_reis.codeflixapp/databases
+
+comando para liberar a permissão
+adb root
+
+sqlite3:
+sqlite3 codeflix.db
+
+retirado packge.json codeflix
+//"com.hutchind.cordova.plugins.streamingmedia": "~0.1.4",

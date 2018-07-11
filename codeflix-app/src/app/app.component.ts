@@ -71,27 +71,27 @@ export class MyApp {
           this.db.createSchema();
 
           // this.db.createSchema()
-              // .then(() => {
-
-                  // this.userModel.insert({
-                  //     id: 1,
-                  //     name: 'anderson',
-                  //     email: 'admin@user.com'
-                  // });
-
-                  // this.userModel.find(1)
-                  //     .then((user) => {
-                  //     console.log(user);
-                  // }).catch(e => {
-                  //     console.log(e);
-                  // });
-
-                  // this.userModel.findByField('email', 'admin@user.com')
-                  //     .then(resultset => {
-                  //         console.log(resultset);
-                  //     });
-
-              // });
+          //     .then(() => {
+          //
+          //         this.userModel.insert({
+          //             id: 1,
+          //             name: 'anderson',
+          //             email: 'admin@user.com'
+          //         });
+          //
+          //         this.userModel.find(1)
+          //             .then((user) => {
+          //             console.log(user);
+          //         }).catch(e => {
+          //             console.log(e);
+          //         });
+          //
+          //         this.userModel.findByField('email', 'admin@user.com')
+          //             .then(resultset => {
+          //                 console.log(resultset);
+          //         });
+          //
+          //     });
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

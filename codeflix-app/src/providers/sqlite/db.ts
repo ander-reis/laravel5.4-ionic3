@@ -43,7 +43,6 @@ export class DB {
     executeSQL(sql: string, params: Array<any> = []): Promise<any>{
         return this.openOrCreateDatabase()
             .then((db: SQLiteObject) => {
-                console.log(db.executeSql(sql, params));
                 return db.executeSql(sql, params);
             }).catch(e => {
                 console.log(e);

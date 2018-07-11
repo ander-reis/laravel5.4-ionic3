@@ -1,8 +1,5 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
-import {JwtPayload} from "../../models/jwt-payload";
-import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
-import {UserResourceProvider} from "../user-resource/user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {UserModel} from "../sqlite/user.model";
 import {AuthGuard} from "./auth-guard";
