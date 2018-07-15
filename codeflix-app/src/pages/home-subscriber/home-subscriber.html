@@ -32,7 +32,8 @@
       <ion-col col-12 col-sm-4 col-md-4
                *ngFor="let video of videos.data"
                navPush="VideoPlayPage"
-               [navParams]="{video: video.id}">
+               [navParams]="{video: video.id}"
+               (press)="presentActionsheet(video.id)">
         <ion-card>
 
           <img [src]="video.thumb_small_url">

@@ -40,6 +40,11 @@ import {UserModel} from "../providers/sqlite/user.model";
 import {AuthOffline} from "../providers/auth/auth-offline";
 import { AppConfigProvider } from '../providers/app-config/app-config';
 import {AuthFactory} from "../providers/auth/auth-factory";
+import {VideoModel} from "../providers/sqlite/video.model";
+import {VideoController} from "../providers/video-resource/video.controller";
+import {VideoFactory} from "../providers/video-resource/video.factory";
+import {VideoDownload} from "../providers/video-resource/video-download";
+import {DownloadsPage} from "../pages/downloads/downloads";
 
 declare var ENV: Env;
 
@@ -55,7 +60,8 @@ declare var ENV: Env;
         PlansPage,
         PaymentPage,
         HomeSubscriberPage,
-        VideoPlayPage
+        VideoPlayPage,
+        DownloadsPage
     ],
     imports: [
         HttpModule,
@@ -73,6 +79,7 @@ declare var ENV: Env;
                 {component: PlansPage, name: 'PlansPage', segment: 'plans'},
                 {component: PaymentPage, name: 'PaymentPage', segment: 'plan/:plan/payment'},
                 {component: VideoPlayPage, name: 'VideoPlayPage', segment: 'video/:video/play'},
+                {component: DownloadsPage, name: 'DownloadsPage', segment: 'downloads'},
             ]
         }),
         IonicStorageModule.forRoot({
@@ -91,7 +98,8 @@ declare var ENV: Env;
         PlansPage,
         PaymentPage,
         HomeSubscriberPage,
-        VideoPlayPage
+        VideoPlayPage,
+        DownloadsPage
     ],
     providers: [
         AppConfigProvider,
@@ -121,6 +129,10 @@ declare var ENV: Env;
         SQLitePorter,
         DB,
         UserModel,
+        VideoModel,
+        VideoController,
+        VideoFactory,
+        VideoDownload,
         {provide: ErrorHandler, useClass: IonicErrorHandler},
         {
             provide: AuthHttp,

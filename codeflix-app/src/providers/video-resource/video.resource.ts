@@ -4,6 +4,7 @@ import {AuthHttp} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
 import {Env} from "../../models/env";
 import {RequestOptions, URLSearchParams} from "@angular/http";
+import {VideoAdapter} from "./video.adapter";
 
 declare var ENV: Env;
 
@@ -14,7 +15,7 @@ declare var ENV: Env;
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class VideoResourceProvider {
+export class VideoResourceProvider implements VideoAdapter{
 
   constructor(public authHttp: AuthHttp) {
     console.log('Hello VideoResourceProvider Provider');

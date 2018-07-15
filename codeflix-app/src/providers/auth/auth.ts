@@ -21,16 +21,11 @@ export class AuthProvider implements AuthGuard{
     private _user = null;
     private _userSubject = new BehaviorSubject(null);
 
-    constructor(
-        public jwtClient: JwtClientProvider,
-        public fb: Facebook,
-        public userResource: UserResourceProvider,
-        public userModel: UserModel,
-        public appConfig: AppConfigProvider
-    ) {
-        this.user().then((user) => {
-            console.log(user);
-        })
+    constructor(public jwtClient: JwtClientProvider,
+                public fb: Facebook,
+                public userResource: UserResourceProvider,
+                public userModel: UserModel,
+                public appConfig: AppConfigProvider) {
     }
 
     //verifica a mudança em user

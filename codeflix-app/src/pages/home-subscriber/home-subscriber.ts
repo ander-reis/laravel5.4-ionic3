@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {VideoResourceProvider} from "../../providers/video-resource/video.resource";
+import {ActionSheetController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+//import {VideoResourceProvider} from "../../providers/video-resource/video.resource";
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
+import {VideoFactory} from "../../providers/video-resource/video.factory";
+import {VideoDownload} from "../../providers/video-resource/video-download";
+import {VideoAdapter} from "../../providers/video-resource/video.adapter";
 //import {Auth} from "../../decorators/auth.decorator";
 
 /**
@@ -27,24 +30,27 @@ export class HomeSubscriberPage {
     canShowSearchBar = false;
     search = '';
     formSearchControl = new FormControl();
+    videoAdapter: VideoAdapter;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
-                public videoResource: VideoResourceProvider) {
+                public actionSheetCtrl: ActionSheetController,
+                public videoFactory: VideoFactory,
+                public videoDownload: VideoDownload,
+                public toastCtrl: ToastController) {
+        this.videoAdapter = this.videoFactory.get();
     }
 
     getVideos() {
-        return this.videoResource
-            .latest(this.page, this.search);
+        return this.videoAdapter.latest(this.page, this.search);
     }
 
     ionViewDidLoad() {
         this.searchVideos();
-
-        // this.getVideos()
-        //     .subscribe((videos) => {
-        //         this.videos = videos;
-        //     });
+        this.getVideos()
+            .subscribe((videos) => {
+                this.videos = videos;
+            });
     }
 
     searchVideos() {
@@ -92,5 +98,49 @@ export class HomeSubscriberPage {
     reset() {
         this.page = 1;
         this.canMoreVideos = true;
+    }
+
+    presentActionsheet(videoId) {
+        let actionSheet = this.actionSheetCtrl.create({
+            title: 'Opções',
+            buttons: [
+                {
+                    text: 'Enviar para download',
+                    role: 'destructive',
+                    handler: () => {
+                        this.addVideo(videoId, actionSheet);
+                        return false;
+                    }
+                },
+                {
+                    text: 'Cancealar',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('cancelou');
+                    }
+                }
+            ]
+        });
+        actionSheet.present();
+    }
+
+    addVideo(videoId, actionSheet){
+        this.videoDownload
+            .addVideo(videoId)
+            .subscribe(
+                () => actionSheet.dismiss(),
+                () => {
+                    actionSheet.dismiss();
+
+                    let toast = this.toastCtrl.create({
+                        message: 'Não foi possível idetificar o vídeo',
+                        duration: 3000,
+                        position: 'top',
+                        cssClass: 'toast-login-error'
+                    });
+
+                    toast.present();
+                }
+            );
     }
 }

@@ -19,14 +19,9 @@ export class AuthOffline implements AuthGuard{
     private _userSubject = new BehaviorSubject(null);
     private userKey = 'userId';
 
-    constructor(
-        public userModel: UserModel,
-        public storage: Storage,
-        public appConfig: AppConfigProvider
-    ) {
-        this.user().then((user) => {
-            console.log(user);
-        })
+    constructor(public userModel: UserModel,
+                public storage: Storage,
+                public appConfig: AppConfigProvider) {
     }
 
     //verifica a mudança em user
@@ -36,12 +31,16 @@ export class AuthOffline implements AuthGuard{
 
     //metodo para carregar dados do usuário
     user(): Promise<Object> {
-        return this.storage.get(this.userKey)
+        return this._user ? Promise.resolve(this._user) :
+        this.storage.get(this.userKey)
             .then(id => {
                 return this.userModel.find(id);
             })
             .then(user => {
                 this._user = user;
+                if(user){
+                    this._user.subscription_valid = true;
+                }
                 this._userSubject.next(this._user);
                 return user;
             });

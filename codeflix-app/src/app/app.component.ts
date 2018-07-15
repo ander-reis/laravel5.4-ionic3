@@ -16,6 +16,7 @@ import {HomeSubscriberPage} from "../pages/home-subscriber/home-subscriber";
 import {DB} from "../providers/sqlite/db";
 import {UserModel} from "../providers/sqlite/user.model";
 import {AuthOffline} from "../providers/auth/auth-offline";
+import {DownloadsPage} from "../pages/downloads/downloads";
 
 // import { Test } from '../components/test/test';
 
@@ -44,7 +45,8 @@ export class MyApp {
     this.initializeApp();
 
     this.pageSubscriber = [
-        {title: 'Assine Agora', component: HomeSubscriberPage}
+        {title: 'Assine Agora', component: HomeSubscriberPage},
+        {title: 'Downloads', component: DownloadsPage}
     ];
 
     // used for an example of ngFor and navigation
