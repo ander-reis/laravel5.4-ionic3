@@ -7,6 +7,7 @@ import {VideoFactory} from "../../providers/video-resource/video.factory";
 import {VideoDownload} from "../../providers/video-resource/video-download";
 import {VideoAdapter} from "../../providers/video-resource/video.adapter";
 //import {Auth} from "../../decorators/auth.decorator";
+// import {Auth} from "../../decorators/auth.decorator";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -14,7 +15,7 @@ import {VideoAdapter} from "../../providers/video-resource/video.adapter";
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@Auth()
+// @Auth()
 @IonicPage()
 @Component({
   selector: 'page-home-subscriber',
