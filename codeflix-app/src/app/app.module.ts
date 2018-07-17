@@ -45,6 +45,7 @@ import {VideoController} from "../providers/video-resource/video.controller";
 import {VideoFactory} from "../providers/video-resource/video.factory";
 import {VideoDownload} from "../providers/video-resource/video-download";
 import {DownloadsPage} from "../pages/downloads/downloads";
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 declare var ENV: Env;
 
@@ -61,7 +62,8 @@ declare var ENV: Env;
         PaymentPage,
         HomeSubscriberPage,
         VideoPlayPage,
-        DownloadsPage
+        DownloadsPage,
+        ProgressBarComponent
     ],
     imports: [
         HttpModule,
