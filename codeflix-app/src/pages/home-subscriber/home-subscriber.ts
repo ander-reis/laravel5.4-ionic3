@@ -114,7 +114,7 @@ export class HomeSubscriberPage {
                     }
                 },
                 {
-                    text: 'Cancealar',
+                    text: 'Cancelar',
                     role: 'cancel',
                     handler: () => {
                         console.log('cancelou');
