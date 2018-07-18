@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             });
 
         factory(\CodeFlix\Models\User::class, 1)->create([
-            'name' => 'Anderson',
+            'name' => 'Anderson Reis',
             'email' => 'ander-reis@hotmail.com',
             'password' => bcrypt('secret'),
             'verified' => 1,

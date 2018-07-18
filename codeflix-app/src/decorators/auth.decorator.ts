@@ -6,8 +6,7 @@ import {LoginPage} from "../pages/login/login";
 import {AuthFactory} from "../providers/auth/auth-factory";
 import {AuthGuard} from "../providers/auth/auth-guard";
 
-export const Auth = () => {
-
+export function Auth(){
     return (target: any) => {
         // aqui é verificado se a pessoa pode acessar a página ou não
         target.prototype.ionViewCanEnter = function() {
@@ -26,7 +25,7 @@ export const Auth = () => {
                         let navCtrl = this[property];
                         navCtrl.setRoot(LoginPage);
                     });
-                   return false;
+                    return false;
                 }
                 return true;
             });

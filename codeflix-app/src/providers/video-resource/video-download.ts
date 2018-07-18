@@ -19,7 +19,6 @@ export class VideoDownload {
                 video.progress = '0%';
 
                 this.videos.push(video);
-                console.log(this.videos);
                return video;
             });
     }

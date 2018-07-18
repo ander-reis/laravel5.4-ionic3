@@ -50,9 +50,10 @@ export class MyApp {
     ];
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-    ];
+      this.pages = [
+          { title: 'Home', component: HomePage },
+          {title: 'Downloads', component: DownloadsPage}
+      ];
 
   }
 

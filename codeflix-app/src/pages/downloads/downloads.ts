@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {VideoDownload} from "../../providers/video-resource/video-download";
-//import {Auth} from "../../decorators/auth.decorator";
+import {Auth} from "../../decorators/auth.decorator";
 
 /**
  * Generated class for the DownloadsPage page.
@@ -10,8 +10,7 @@ import {VideoDownload} from "../../providers/video-resource/video-download";
  * on Ionic pages and navigation.
  */
 
-//@Auth()
-@IonicPage()
+@Auth()
 @IonicPage()
 @Component({
   selector: 'page-downloads',
