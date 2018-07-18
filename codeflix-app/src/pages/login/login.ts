@@ -88,6 +88,7 @@ export class LoginPage {
 
     afterLogin(user) {
         this.menuCtrl.enable(true);
-        this.navCtrl.push(user.subscription_valid ? HomeSubscriberPage : HomePage);
+        // this.navCtrl.push(user.subscription_valid ? HomeSubscriberPage : HomePage);
+        this.navCtrl.setRoot(user.subscription_valid ? HomeSubscriberPage : HomePage);
     }
 }

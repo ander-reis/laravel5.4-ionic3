@@ -1,0 +1,12 @@
+testar menu após login;
+
+testar dowload;
+
+incluir em bibliotecas:
+file
+ionic cordova plugin add cordova-plugin-file
+npm install --save @ionic-native/file
+
+transfer
+ionic cordova plugin add cordova-plugin-file-transfer
+npm install --save @ionic-native/transfer

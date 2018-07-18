@@ -3,6 +3,8 @@ import 'rxjs/add/operator/map';
 import {VideoResourceProvider} from "./video.resource";
 import {Observable} from "rxjs/Observable";
 import {VideoModel} from "../sqlite/video.model";
+import {VideoPaths} from "./video-paths";
+import {Transfer} from "@ionic-native/transfer";
 
 @Injectable()
 export class VideoDownload {
@@ -10,7 +12,9 @@ export class VideoDownload {
     videos: Array<any> = [];
 
     constructor(public videoResource: VideoResourceProvider,
-                public videoModel: VideoModel) {
+                public videoModel: VideoModel,
+                public videoPaths: VideoPaths,
+                public transfer: Transfer) {
     }
 
     addVideo(videoId): Observable<Object> {
@@ -24,6 +28,16 @@ export class VideoDownload {
     }
 
     start(index){
+        let fileTransfer = this.transfer.create();
+        let video = this.videos[index];
+        fileTransfer.download(
+            video.file_url,
+            this.videoPaths.getFilePath(video)
+        ).then((success) => {
+            console.log(success);
+        }).catch((error) => {
+            console.log(error);
+        });
         this.insertVideo(this.videos[index]);
     }
 
