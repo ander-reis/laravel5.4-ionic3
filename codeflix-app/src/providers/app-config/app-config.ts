@@ -18,7 +18,6 @@ export class AppConfigProvider {
 
     constructor(public storage: Storage,
                 public file: File) {
-        console.log(this.file);
     }
 
     async load() {
@@ -26,14 +25,14 @@ export class AppConfigProvider {
         this.off = off;
 
         try{
-            this.file.resolveDirectoryUrl(`file://${this.baseFilePath}`)
+            await this.file.resolveDirectoryUrl(`file://${this.baseFilePath}`)
         } catch (e){
             this.baseFilePath = this.file.externalApplicationStorageDirectory;
             console.log(e);
         }
 
-        console.log(this.baseFilePath);
-        console.log(this.off);
+//        console.log(this.baseFilePath);
+//        console.log(this.off);
         return Promise.resolve(null);
     }
 

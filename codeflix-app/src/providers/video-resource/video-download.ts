@@ -32,8 +32,8 @@ export class VideoDownload {
         let video = this.videos[index];
         fileTransfer.download(
             video.file_url,
-            this.videoPaths.getFilePath(video)
-        ).then((success) => {
+            this.videoPaths.getFilePath(video))
+            .then((success) => {
             console.log(success);
         }).catch((error) => {
             console.log(error);

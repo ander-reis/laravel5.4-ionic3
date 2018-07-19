@@ -1,4 +1,4 @@
-testar menu após login;
+testar menu após login --> ok;
 
 testar dowload;
 

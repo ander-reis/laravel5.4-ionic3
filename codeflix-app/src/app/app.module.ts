@@ -47,7 +47,7 @@ import {VideoDownload} from "../providers/video-resource/video-download";
 import {DownloadsPage} from "../pages/downloads/downloads";
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import {VideoPaths} from "../providers/video-resource/video-paths";
-import {File} from '@ionic-native/file';
+import {File} from "@ionic-native/file";
 import {Transfer} from "@ionic-native/transfer";
 
 declare var ENV: Env;
