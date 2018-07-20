@@ -6,6 +6,7 @@
 /.idea
 /.vagrant
 /z_docs
+/z_docs/package-model.txt
 Homestead.json
 Homestead.yaml
 npm-debug.log
