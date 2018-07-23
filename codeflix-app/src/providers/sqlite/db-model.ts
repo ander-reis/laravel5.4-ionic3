@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {DB} from "./db";
 import objectValues from 'object.values';
+import squel from 'squel';
 
 /*
   Generated class for the DBModel provider.
@@ -12,6 +13,7 @@ import objectValues from 'object.values';
 export abstract class DBModel {
 
     protected abstract table;
+    protected qb;
 
     constructor(public db: DB) {
     }
@@ -41,5 +43,37 @@ export abstract class DBModel {
     findByField(field, value){
         let sql = `SELECT * FROM ${this.table} WHERE \`${field}\` = ?`;
         return this.db.executeSQL(sql, [value]);
+    }
+
+    paginate(page, perPage = 15): Promise<any> {
+        this.initQueryBuilder();
+        let offset = (page - 1) * perPage;
+        if (typeof this.qb.VERSION != "undefined") {
+            this.qb = this.qb.select();
+        }
+        this.qb = this.qb.from(this.table).limit(perPage);
+        if (offset != 0) {
+            this.qb = this.qb.offset(offset);
+        }
+        let sqlObj = this.qb.toParam();
+
+        console.log(sqlObj.text);
+        console.log(sqlObj.values);
+
+        return this.db.executeSQL(sqlObj.text, sqlObj.values)
+            .then(resultset => {
+                let rows = [];
+                for (let i = 0; i < resultset.rows.length; i++) {
+                    rows.push(resultset.rows.item(i));
+                }
+                console.log(rows);
+                return rows;
+            });
+    }
+
+    protected initQueryBuilder(){
+        if(!this.qb){
+            this.qb = squel;
+        }
     }
 }

@@ -18,4 +18,14 @@ export class VideoModel extends DBModel {
             return super.insert(params);
         });
     }
+
+    async latest(page, search){
+        this.initQueryBuilder();
+        let user = await this.auth.user();
+        let where = 'user_id = ? AND (title like ? OR description like ? OR serie_title like ? OR categories_name like ?)';
+        let searchLike = `%${search}%`;
+        this.qb = this.qb.select().where(where, (<any>user).id, searchLike, searchLike, searchLike, searchLike)
+            .order('created_at');
+        return super.paginate(page);
+    }
 }

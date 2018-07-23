@@ -17,6 +17,7 @@ import {DB} from "../providers/sqlite/db";
 import {UserModel} from "../providers/sqlite/user.model";
 import {AuthOffline} from "../providers/auth/auth-offline";
 import {DownloadsPage} from "../pages/downloads/downloads";
+import {VideoModel} from "../providers/sqlite/video.model";
 
 // import { Test } from '../components/test/test';
 
@@ -40,7 +41,8 @@ export class MyApp {
               public authOffline: AuthOffline,
               public redirector: RedirectorProvider,
               public db: DB,
-              public userModel: UserModel
+              public userModel: UserModel,
+              public videoModel: VideoModel
   ) {
     this.initializeApp();
 
@@ -72,6 +74,9 @@ export class MyApp {
       this.platform.ready().then(() => {
 
           this.db.createSchema();
+
+          //teste paginate
+          this.videoModel.latest(1, "");
 
           // this.db.createSchema()
           //     .then(() => {
