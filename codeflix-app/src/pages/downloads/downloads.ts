@@ -20,24 +20,27 @@ export class DownloadsPage {
 
   videos: Array<any>;
 
+  //progress = '0%';
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public videoDownload: VideoDownload) {
     this.videos = this.videoDownload.videos;
-    this.videoDownload.addVideo(3).subscribe(()=>{});
-    this.videoDownload.addVideo(5).subscribe(()=>{});
-    this.videoDownload.addVideo(6).subscribe(()=>{});
-    this.videoDownload.addVideo(8).subscribe(()=>{});
+    // this.videoDownload.addVideo(3).subscribe(()=>{});
+    // this.videoDownload.addVideo(5).subscribe(()=>{});
+    // this.videoDownload.addVideo(6).subscribe(()=>{});
+    // this.videoDownload.addVideo(8).subscribe(()=>{});
   }
 
   ionViewDidLoad() {
     //teste progress bar
-    /*let count = 0;
+      /*
+    let count = 0;
     setInterval(() => {
         count++;
         this.progress = `${count}%`;
-    }, 100);*/
-
+    }, 100);
+  */
     console.log('ionViewDidLoad DownloadsPage');
   }
 

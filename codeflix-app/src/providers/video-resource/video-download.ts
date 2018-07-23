@@ -22,7 +22,6 @@ export class VideoDownload {
         return this.videoResource.get(videoId)
             .map(video => {
                 video.progress = '0%';
-
                 this.videos.push(video);
                return video;
             });
@@ -36,16 +35,17 @@ export class VideoDownload {
         fileTransfer.onProgress((event: ProgressEvent) => {
             if(event.lengthComputable){
                 this.zone.run(() => {
-                    let progress = (event.loaded/event.total)*100;
+                    let progress = (event.loaded / event.total) * 100;
                     progress = Math.ceil(progress);
-                    video.progress = `${progress}`;
+                    video.progress = `${progress}%`;
                 });
             }
         });
 
         return fileTransfer.download(
-            //video.file_url,
-            'http://www.sample.videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4',
+            video.file_url,
+            // 'http://www.sample.videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4',
+            //'http://www.videos.com/play/M34350639-1/popular_videos/untitled.html',
             this.videoPaths.getFilePath(video)
         ).then((success) => {
             console.log(success);
