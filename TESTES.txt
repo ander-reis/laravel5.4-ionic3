@@ -1,0 +1,9 @@
+comandos unix para apagar pasta videos:
+rm -rf videos
+
+caminho para ver download de video e thumb:
+/storage/emulated/0/Android/data/com.ander_reiscodeflix/codeflix/videos/3
+
+ver se foi inserido no sqlite video e thumb;
+
+testar download;

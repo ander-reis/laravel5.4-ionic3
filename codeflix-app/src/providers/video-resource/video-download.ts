@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, NgZone} from "@angular/core";
 import 'rxjs/add/operator/map';
 import {VideoResourceProvider} from "./video.resource";
 import {Observable} from "rxjs/Observable";
@@ -14,7 +14,8 @@ export class VideoDownload {
     constructor(public videoResource: VideoResourceProvider,
                 public videoModel: VideoModel,
                 public videoPaths: VideoPaths,
-                public transfer: Transfer) {
+                public transfer: Transfer,
+                public zone: NgZone) {
     }
 
     addVideo(videoId): Observable<Object> {
@@ -27,28 +28,51 @@ export class VideoDownload {
             });
     }
 
-    start(index){
+    start(index): Promise<any> {
         let fileTransfer = this.transfer.create();
         let video = this.videos[index];
-        fileTransfer.download(
-            video.file_url,
-            this.videoPaths.getFilePath(video))
-            .then((success) => {
+
+        //progressbar
+        fileTransfer.onProgress((event: ProgressEvent) => {
+            if(event.lengthComputable){
+                this.zone.run(() => {
+                    let progress = (event.loaded/event.total)*100;
+                    progress = Math.ceil(progress);
+                    video.progress = `${progress}`;
+                });
+            }
+        });
+
+        return fileTransfer.download(
+            //video.file_url,
+            'http://www.sample.videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4',
+            this.videoPaths.getFilePath(video)
+        ).then((success) => {
             console.log(success);
+            return this.transferThumb(video);
+        }).then(() => {
+            return this.insertVideo(this.videos[index]);
         }).catch((error) => {
             console.log(error);
         });
-        this.insertVideo(this.videos[index]);
+    }
+
+    protected transferThumb(video) {
+        let fileTransfer = this.transfer.create();
+        return fileTransfer.download(
+            video.thumb_small_url,
+            this.videoPaths.getThumbPath(video)
+        );
     }
 
     protected insertVideo(video){
-        this.videoModel.insert({
+        return this.videoModel.insert({
             id: video.id,
             title: video.title,
             description: video.description,
             duration: video.duration,
-            thumb_url: video.thumb_small_url,
-            file_url: video.file_url,
+            thumb_url: this.videoPaths.getThumbPath(video),
+            file_url: this.videoPaths.getFilePath(video),
             serie_title: video.serie_title,
             categories_name: JSON.stringify(video.categories_name),
             created_at: video.created_at.replace('T', ' ')

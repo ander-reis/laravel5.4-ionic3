@@ -24,6 +24,10 @@ export class DownloadsPage {
               public navParams: NavParams,
               public videoDownload: VideoDownload) {
     this.videos = this.videoDownload.videos;
+    this.videoDownload.addVideo(3).subscribe(()=>{});
+    this.videoDownload.addVideo(5).subscribe(()=>{});
+    this.videoDownload.addVideo(6).subscribe(()=>{});
+    this.videoDownload.addVideo(8).subscribe(()=>{});
   }
 
   ionViewDidLoad() {
