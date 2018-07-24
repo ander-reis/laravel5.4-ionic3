@@ -47,13 +47,13 @@ export class MyApp {
     this.initializeApp();
 
     this.pageSubscriber = [
-        {title: 'Assine Agora', component: HomeSubscriberPage},
+        {title: 'Assine Agora', component: HomePage},
         {title: 'Downloads', component: DownloadsPage}
     ];
 
     // used for an example of ngFor and navigation
       this.pages = [
-          { title: 'Home', component: HomePage },
+          { title: 'Home', component: HomeSubscriberPage },
           {title: 'Downloads', component: DownloadsPage}
       ];
 

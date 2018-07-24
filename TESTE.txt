@@ -1,6 +1,0 @@
-install
-squel
-https://hiddentao.com/squel/
-npm install squel@5.10.0 --save
-
-testar ppaginação
