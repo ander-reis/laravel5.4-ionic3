@@ -64,7 +64,7 @@ export class JwtClientProvider {
     }
 
     //metodo para armazenar token no storage
-    accessToken(jwtCredentials: JwtCredentials):Promise<string> {
+    accessToken(jwtCredentials: JwtCredentials): Promise<string> {
         return this.authHttp.post(`${ENV.API_URL}/access_token`, jwtCredentials)
             .toPromise()
             .then((response: Response) => {

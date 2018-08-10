@@ -36,7 +36,10 @@
                (press)="presentActionsheet(video.id)">
         <ion-card>
 
-          <img [src]="video.thumb_small_url">
+          <img [src]="video.thumb_small_url | safeUrl" *ngIf="appConfig.getOff();else elseBlock">
+          <ng-template>
+            <img [src]="video.thumb_small_url">
+          </ng-template>
 
           <ion-card-content>
             <ion-card-title>{{video.title}}</ion-card-title>

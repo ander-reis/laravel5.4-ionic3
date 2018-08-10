@@ -49,6 +49,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import {VideoPaths} from "../providers/video-resource/video-paths";
 import {File} from "@ionic-native/file";
 import {Transfer} from "@ionic-native/transfer";
+import {SafeUrl} from "../pipes/safe-url";
 
 declare var ENV: Env;
 
@@ -66,7 +67,8 @@ declare var ENV: Env;
         HomeSubscriberPage,
         VideoPlayPage,
         DownloadsPage,
-        ProgressBarComponent
+        ProgressBarComponent,
+        SafeUrl,
     ],
     imports: [
         HttpModule,

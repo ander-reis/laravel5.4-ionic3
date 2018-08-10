@@ -57,6 +57,9 @@ export abstract class DBModel {
         }
         let sqlObj = this.qb.toParam();
 
+        //zerar query builder
+        this.qb = null;
+
         console.log(sqlObj.text);
         console.log(sqlObj.values);
 

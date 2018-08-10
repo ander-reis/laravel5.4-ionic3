@@ -7,6 +7,7 @@ import {VideoFactory} from "../../providers/video-resource/video.factory";
 import {VideoDownload} from "../../providers/video-resource/video-download";
 import {VideoAdapter} from "../../providers/video-resource/video.adapter";
 import {Auth} from "../../decorators/auth.decorator";
+import {AppConfigProvider} from "../../providers/app-config/app-config";
 
 /**
  * Generated class for the HomeSubscriberPage page.
@@ -37,7 +38,8 @@ export class HomeSubscriberPage {
                 public actionSheetCtrl: ActionSheetController,
                 public videoFactory: VideoFactory,
                 public videoDownload: VideoDownload,
-                public toastCtrl: ToastController) {
+                public toastCtrl: ToastController,
+                public appConfig: AppConfigProvider) {
         this.videoAdapter = this.videoFactory.get();
     }
 

@@ -17,7 +17,12 @@
     <ion-row>
       <ion-col col-12 *ngIf="video | async; let video;">
         <ion-card class="card-video-play" (click)="play()">
-          <img [src]="video.thumb_small_url">
+
+          <img [src]="video.thumb_small_url | safeUrl" *ngIf="appConfig.getOff();else elseBlock">
+          <ng-template>
+            <img [src]="video.thumb_small_url">
+          </ng-template>
+
           <div>
             <ion-icon name="play"></ion-icon>
           </div>
