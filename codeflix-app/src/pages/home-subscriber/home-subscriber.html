@@ -37,7 +37,7 @@
         <ion-card>
 
           <img [src]="video.thumb_small_url | safeUrl" *ngIf="appConfig.getOff();else elseBlock">
-          <ng-template>
+          <ng-template #elseBlock>
             <img [src]="video.thumb_small_url">
           </ng-template>
 
