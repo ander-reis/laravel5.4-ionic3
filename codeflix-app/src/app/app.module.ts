@@ -50,6 +50,7 @@ import {VideoPaths} from "../providers/video-resource/video-paths";
 import {File} from "@ionic-native/file";
 import {Transfer} from "@ionic-native/transfer";
 import {SafeUrl} from "../pipes/safe-url";
+import {UserRegisterPage} from "../pages/user-register/user-register";
 
 declare var ENV: Env;
 
@@ -69,6 +70,7 @@ declare var ENV: Env;
         DownloadsPage,
         ProgressBarComponent,
         SafeUrl,
+        UserRegisterPage
     ],
     imports: [
         HttpModule,
@@ -78,6 +80,7 @@ declare var ENV: Env;
         IonicModule.forRoot(MyApp, {}, {
             links: [
                 {component: LoginPage, name: 'LoginPage', segment: 'login'},
+                {component: UserRegisterPage, name: 'UserRegisterPage', segment: 'user/register'},
                 {component: HomePage, name: 'HomePage', segment: 'home'},
                 {component: Test, name: 'TestPage', segment: 'test/:id/:name'},
                 {component: MySettingsPage, name: 'HomePage', segment: 'my-settings'},
@@ -106,7 +109,8 @@ declare var ENV: Env;
         PaymentPage,
         HomeSubscriberPage,
         VideoPlayPage,
-        DownloadsPage
+        DownloadsPage,
+        UserRegisterPage
     ],
     providers: [
         AppConfigProvider,

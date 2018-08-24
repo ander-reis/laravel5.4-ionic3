@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import {Env} from "../../models/env";
 import {AuthHttp} from 'angular2-jwt';
 import {Observable} from "rxjs/Observable";
+import {JwtClientProvider} from "../jwt-client/jwt-client";
 
 declare var ENV:Env;
 
@@ -17,7 +18,7 @@ declare var ENV:Env;
 @Injectable()
 export class UserResourceProvider {
 
-  constructor(public http: Http, public authHttp: AuthHttp) {
+  constructor(public http: Http, public authHttp: AuthHttp, public jwtClient: JwtClientProvider) {
     console.log('Hello UserResourceProvider Provider');
   }
 
@@ -28,6 +29,15 @@ export class UserResourceProvider {
         .post(`${ENV.API_URL}/register`, {}, new RequestOptions({headers}))
         .toPromise()
         .then(response => response.json().token);
+  }
+
+  create(user): Promise<string>{
+    return this.http.post(`${ENV.API_URL}/register`, Object.assign(user, {type: 2}))
+        .toPromise()
+        .then(response => {
+          let token = response.json().token;
+          return this.jwtClient.setToken(token);
+        });
   }
 
   updatePassword({password, password_confirmation}):Promise<Object>{
