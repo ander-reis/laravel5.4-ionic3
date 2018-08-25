@@ -90,10 +90,15 @@ $factory->define(\CodeFlix\Models\Order::class, function(\Faker\Generator $faker
 });
 
 //subscription
-//$factory->define(\CodeFlix\Models\Subscription::class, function(\Faker\Generator $faker){
-//    return [
-//    ];
-//});
+$factory->define(\CodeFlix\Models\Subscription::class, function(\Faker\Generator $faker){
+    return [
+        'plan_id' => 1,
+        'order_id' => 1,
+        'expires_at' => '2018-12-31',
+        'created_at' => $faker->date('Y-m-d', 'now'),
+        'updated_at' => $faker->date('Y-m-d', 'now'),
+    ];
+});
 
 $factory->define(\CodeFlix\Models\PayPalWebProfile::class, function (\Faker\Generator $faker){
     return [

@@ -28,7 +28,12 @@ class VideosController extends Controller
         $this->videoRepository->pushCriteria(new FindPublishedCompletedCriteria());
         return $this->videoRepository
             ->scopeQuery(function($query){
-                return $query->take(10);
+                return $query
+//                    BUSCA COM JOIN
+//                    ->whereHas('categories', function($query){
+//                        $query->where('categories.name', 'LIKE' , '%a%');
+//                    })
+                    ->take(10);
             })
             ->paginate();
     }

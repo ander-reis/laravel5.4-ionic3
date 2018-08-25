@@ -27,6 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PayPalWebProfileTableSeeder::class);
         $this->call(PlansTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
-        //$this->call(SubscriptionsTableSeeder::class);
+        $this->call(SubscriptionsTableSeeder::class);
     }
 }

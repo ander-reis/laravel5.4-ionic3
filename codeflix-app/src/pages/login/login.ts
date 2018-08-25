@@ -5,6 +5,7 @@ import {AuthProvider} from "../../providers/auth/auth";
 import {HomePage} from "../home/home";
 import {HomeSubscriberPage} from "../home-subscriber/home-subscriber";
 import {AuthOffline} from "../../providers/auth/auth-offline";
+import {UserRegisterPage} from "../user-register/user-register";
 // import {Test} from "../../components/test/test";
 
 /**
@@ -89,6 +90,10 @@ export class LoginPage {
     afterLogin(user) {
         this.menuCtrl.enable(true);
         // this.navCtrl.push(user.subscription_valid ? HomeSubscriberPage : HomePage);
-        this.navCtrl.setRoot(user.subscription_valid ? HomeSubscriberPage : HomePage);
+        this.navCtrl.setRoot(user.subscription_valid ? 'HomeSubscriberPage' : 'HomePage');
+    }
+
+    goToRegister(){
+        this.navCtrl.push(UserRegisterPage);
     }
 }

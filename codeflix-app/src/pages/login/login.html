@@ -20,7 +20,9 @@
                 Login com <ion-icon name="logo-facebook"></ion-icon>
               </button>
 
-              <button ion-button type="button" block color="primary" navPush="UserRegisterPage">Criar minha conta</button>
+              <!--exemplo com navpush, mas não é usado com lazyload-->
+              <!--<button ion-button type="button" block color="primary" navPush="UserRegisterPage">Criar minha conta</button>-->
+              <button ion-button type="button" block color="primary" (click)="goToRegister()">Criar minha conta</button>
 
               <button type="button" ion-button block color="danger" (click)="loginOffline()">Login Offline</button>
             </form>

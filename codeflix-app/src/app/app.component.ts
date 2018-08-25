@@ -80,7 +80,6 @@ export class MyApp {
           /**
            * teste video controller
            */
-          console.log('videoCtrl:');
           this.videoCtrl.latest(1 , "").subscribe(data => console.log(data));
 
           /**

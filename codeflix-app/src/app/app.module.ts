@@ -51,6 +51,16 @@ import {File} from "@ionic-native/file";
 import {Transfer} from "@ionic-native/transfer";
 import {SafeUrl} from "../pipes/safe-url";
 import {UserRegisterPage} from "../pages/user-register/user-register";
+import {LoginPageModule} from "../pages/login/login.module";
+import {UserRegisterPageModule} from "../pages/user-register/user-register.module";
+import {HomePageModule} from "../pages/home/home.module";
+import {MySettingsPageModule} from "../pages/my-settings/my-settings.module";
+import {AddCpfPageModule} from "../pages/add-cpf/add-cpf.module";
+import {HomeSubscriberPageModule} from "../pages/home-subscriber/home-subscriber.module";
+import {PlansPageModule} from "../pages/plans/plans.module";
+import {PaymentPageModule} from "../pages/payment/payment.module";
+import {VideoPlayPageModule} from "../pages/video-play/video-play.module";
+import {DownloadsPageModule} from "../pages/downloads/downloads.module";
 
 declare var ENV: Env;
 
@@ -70,7 +80,7 @@ declare var ENV: Env;
         DownloadsPage,
         ProgressBarComponent,
         SafeUrl,
-        UserRegisterPage
+        UserRegisterPage,
     ],
     imports: [
         HttpModule,
@@ -89,9 +99,19 @@ declare var ENV: Env;
                 {component: PlansPage, name: 'PlansPage', segment: 'plans'},
                 {component: PaymentPage, name: 'PaymentPage', segment: 'plan/:plan/payment'},
                 {component: VideoPlayPage, name: 'VideoPlayPage', segment: 'video/:video/play'},
-                {component: DownloadsPage, name: 'DownloadsPage', segment: 'downloads'},
+                {component: DownloadsPage, name: 'DownloadsPage', segment: 'downloads'}
             ]
         }),
+        // LoginPageModule,
+        // UserRegisterPageModule,
+        // HomePageModule,
+        // MySettingsPageModule,
+        // AddCpfPageModule,
+        // HomeSubscriberPageModule,
+        // PlansPageModule,
+        // PaymentPageModule,
+        // VideoPlayPageModule,
+        // DownloadsPageModule,
         IonicStorageModule.forRoot({
             driverOrder: ['localstorage']
         })
@@ -110,7 +130,7 @@ declare var ENV: Env;
         HomeSubscriberPage,
         VideoPlayPage,
         DownloadsPage,
-        UserRegisterPage
+        UserRegisterPage,
     ],
     providers: [
         AppConfigProvider,
