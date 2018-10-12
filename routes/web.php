@@ -34,6 +34,7 @@ Route::group([
     Route::name('login')->get('login', 'Auth\LoginController@showLoginForm');
     Route::post('login', 'Auth\LoginController@login');
 
+
     Route::group(['middleware' => ['isVerified', 'can:admin']], function(){
         Route::name('logout')->post('logout', 'Auth\LoginController@logout');
         Route::get('dashboard', function(){
@@ -43,6 +44,7 @@ Route::group([
         // Alteração de senha do usuário
         Route::name('user_settings.edit')->get('users/settings', 'Auth\UserSettingsController@edit');
         Route::name('user_settings.update')->put('users/settings', 'Auth\UserSettingsController@update');
+
         //USUÁRIOS
         Route::resource('users', 'UsersController');
         //CATEGORIAS
@@ -73,8 +75,6 @@ Route::group([
     Route::name('videos.thumb_small_asset')->get('videos/{video}/thumb_small_asset', 'VideosController@thumbSmallAsset');
     Route::resource('videos', 'VideosController');
 });
-
-Route::put('users/settings', 'Auth\UserSettingsController@update')->name('user_settings.update');
 
 Route::get('/force-login', function () {
     \Auth::loginUsingId(1);
