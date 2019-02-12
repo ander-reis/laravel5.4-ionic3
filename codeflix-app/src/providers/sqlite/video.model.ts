@@ -22,7 +22,7 @@ export class VideoModel extends DBModel {
         });
     }
 
-    async latest(page, search){
+    async latest(page, search) {
         this.initQueryBuilder();
         let user = await this.authOffline.user();
         let where = 'user_id = ? AND (title like ? OR description like ? OR serie_title like ? OR categories_name like ?)';

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {Auth} from "../../decorators/auth.decorator";
 import {UserResourceProvider} from "../../providers/user-resource/user.resource";
@@ -23,7 +23,7 @@ export class MySettingsPage {
     ) {
     }
 
-    submit(){
+    submit() {
         let toast = this.toastCtrl.create({
             duration: 3000,
             position: 'top',

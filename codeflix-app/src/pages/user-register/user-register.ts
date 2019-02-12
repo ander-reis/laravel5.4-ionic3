@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, ToastController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, MenuController, NavController, ToastController} from 'ionic-angular';
 import {UserResourceProvider} from "../../providers/user-resource/user.resource";
 
 /**
@@ -10,8 +10,8 @@ import {UserResourceProvider} from "../../providers/user-resource/user.resource"
  */
 @IonicPage()
 @Component({
-  selector: 'page-user-register',
-  templateUrl: 'user-register.html',
+    selector: 'page-user-register',
+    templateUrl: 'user-register.html',
 })
 export class UserRegisterPage {
 
@@ -31,7 +31,7 @@ export class UserRegisterPage {
         this.menuCtrl.enable(false);
     }
 
-    register(){
+    register() {
         this.userResource.create(this.user)
             .then(() => {
                 this.menuCtrl.enable(true);

@@ -40,7 +40,7 @@ export class DB {
             });
     }
 
-    executeSQL(sql: string, params: Array<any> = []): Promise<any>{
+    executeSQL(sql: string, params: Array<any> = []): Promise<any> {
         return this.openOrCreateDatabase()
             .then((db: SQLiteObject) => {
                 return db.executeSql(sql, params);

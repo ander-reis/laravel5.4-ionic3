@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
 import {Auth} from "../../decorators/auth.decorator";
 import {Test} from "../../components/test/test";
 import {AuthHttp} from "angular2-jwt";
 import 'rxjs/add/operator/toPromise';
+
 // import {Http} from "@angular/http";
 
 
@@ -17,18 +18,17 @@ import 'rxjs/add/operator/toPromise';
 @Auth()
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+    selector: 'page-home',
+    templateUrl: 'home.html',
 })
 export class HomePage {
 
     constructor(public navCtrl: NavController, public authHttp: AuthHttp) {
-    // para teste token erro redirecionamento login
-    // constructor(public navCtrl: NavController, public authHttp: Http) {
-
+        // para teste token erro redirecionamento login
+        // constructor(public navCtrl: NavController, public authHttp: Http) {
     }
 
-    ionViewDidLoad(){
+    ionViewDidLoad() {
         /*
         this.authHttp.get('http://localhost:8000/api/user')
             .toPromise()
@@ -58,7 +58,7 @@ export class HomePage {
         */
     }
 
-    goToTest(){
+    goToTest() {
         this.navCtrl.push(Test, {
             'id': 10,
             'name': 'Anderson'

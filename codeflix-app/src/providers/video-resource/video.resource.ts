@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AuthHttp} from "angular2-jwt";
 import {Observable} from "rxjs/Observable";
@@ -15,25 +15,25 @@ declare var ENV: Env;
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class VideoResourceProvider implements VideoAdapter{
+export class VideoResourceProvider implements VideoAdapter {
 
-  constructor(public authHttp: AuthHttp) {
-    console.log('Hello VideoResourceProvider Provider');
-  }
+    constructor(public authHttp: AuthHttp) {
+        // console.log('Hello VideoResourceProvider Provider');
+    }
 
-  latest(page: number, search: string): Observable<any>{
+    latest(page: number, search: string): Observable<any> {
 
-    let params = new URLSearchParams();
-    params.set('page', page+'');
-    params.set('include', 'serie_title,categories_name');
-    params.set('search', search);
+        let params = new URLSearchParams();
+        params.set('page', page + '');
+        params.set('include', 'serie_title,categories_name');
+        params.set('search', search);
 
-   let requestOptions = new RequestOptions({params});
+        let requestOptions = new RequestOptions({params});
 
-    return this.authHttp
-        .get(`${ENV.API_URL}/videos`, requestOptions)
-        .map(response => response.json());
-  }
+        return this.authHttp
+            .get(`${ENV.API_URL}/videos`, requestOptions)
+            .map(response => response.json());
+    }
 
     get(id: number): Observable<any> {
         let params = new URLSearchParams();

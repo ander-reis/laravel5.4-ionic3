@@ -32,7 +32,7 @@ export abstract class DBModel {
         return this.db.executeSQL(sql, objectValues(params));
     }
 
-    find(id): Promise<any>{
+    find(id): Promise<any> {
         let sql = `SELECT * FROM ${this.table} WHERE id = ?`;
         return this.db.executeSQL(sql, [id])
             .then(resultset => {
@@ -40,7 +40,7 @@ export abstract class DBModel {
             }).catch(e => console.log(e));
     }
 
-    findByField(field, value){
+    findByField(field, value) {
         let sql = `SELECT * FROM ${this.table} WHERE \`${field}\` = ?`;
         return this.db.executeSQL(sql, [value]);
     }
@@ -74,8 +74,8 @@ export abstract class DBModel {
             });
     }
 
-    protected initQueryBuilder(){
-        if(!this.qb){
+    protected initQueryBuilder() {
+        if (!this.qb) {
             this.qb = squel;
         }
     }

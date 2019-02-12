@@ -15,7 +15,7 @@ export class UserModel extends DBModel {
     save({id, name, email}): Promise<any> {
         return this.findByField('email', email)
             .then(resultset => {
-                if(!resultset.rows.length){
+                if (!resultset.rows.length) {
                     return this.insert({
                         id, name, email
                     });

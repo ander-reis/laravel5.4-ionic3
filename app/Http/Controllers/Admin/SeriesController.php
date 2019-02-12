@@ -121,6 +121,7 @@ class SeriesController extends Controller
                 ->withInput();
         }
         $data = array_except($form->getFieldValues(), 'thumb');
+
         $this->repository->update($data,$id);//l5-repository
         $request->session()->flash('message', 'Série alterada com sucesso!');
         return redirect()->route('admin.series.index');

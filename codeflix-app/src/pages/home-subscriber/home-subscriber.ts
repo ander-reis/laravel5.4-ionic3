@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActionSheetController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 //import {VideoResourceProvider} from "../../providers/video-resource/video.resource";
 import {FormControl} from "@angular/forms";
@@ -18,8 +18,8 @@ import {AppConfigProvider} from "../../providers/app-config/app-config";
 @Auth()
 @IonicPage()
 @Component({
-  selector: 'page-home-subscriber',
-  templateUrl: 'home-subscriber.html',
+    selector: 'page-home-subscriber',
+    templateUrl: 'home-subscriber.html',
 })
 export class HomeSubscriberPage {
 
@@ -126,7 +126,7 @@ export class HomeSubscriberPage {
         actionSheet.present();
     }
 
-    addVideo(videoId, actionSheet){
+    addVideo(videoId, actionSheet) {
         this.videoDownload
             .addVideo(videoId)
             .subscribe(
